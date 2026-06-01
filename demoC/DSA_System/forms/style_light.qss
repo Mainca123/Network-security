@@ -1,0 +1,561 @@
+/* =========================================================
+   DSA SECURITY SUITE
+   PREMIUM LIGHT UI 2026
+   ========================================================= */
+
+QMainWindow,
+QWidget#centralwidget
+{
+    background:qlineargradient(
+        x1:0,y1:0,
+        x2:1,y2:1,
+        stop:0 #EDF4FF,
+        stop:0.45 #F6F8FC,
+        stop:1 #FFFFFF
+    );
+
+    color:#0F172A;
+
+    font-family:"Segoe UI Variable";
+    font-size:18px;
+}
+
+
+/* =========================================================
+   SIDEBAR
+   ========================================================= */
+
+QFrame#sidebar
+{
+    background:rgba(2,0,0,10);
+    border-right:1px solid rgba(255,255,255,180);
+}
+
+
+
+/* =========================================================
+   NAV BUTTON
+   ========================================================= */
+   QPushButton[checkable="true"]
+   {
+       background:transparent;
+
+       border:none;
+
+       min-height:60px;
+
+       border-radius:18px;
+
+       padding-left:22px;
+
+       color:#475569;
+
+       font-size:18px;
+       font-weight:600;
+       text-align:left;
+   }
+
+   QPushButton[checkable="true"]:hover
+   {
+       background:#EEF4FF;
+
+       color:#2563EB;
+   }
+
+   QPushButton[checkable="true"]:checked
+   {
+       background:qlineargradient(
+           x1:0,y1:0,
+           x2:1,y2:1,
+           stop:0 #EEF4FF,
+           stop:1 #DCEBFF
+       );
+
+       color:#2563EB;
+
+       border-left:6px solid #2563EB;
+
+       font-weight:700;
+   }
+
+
+/* =========================================================
+   TITLE
+   ========================================================= */
+
+QLabel#mainTitle
+{
+    font-size:34px;
+    font-weight:800;
+    color:#0F172A;
+}
+
+QLabel#subTitle
+{
+    font-size:18px;
+    color:#64748B;
+}
+
+
+
+/* =========================================================
+   SYSTEM STATUS
+   ========================================================= */
+
+QLabel#labelSystemStatus
+{
+    background:#ECFDF5;
+
+    color:#15803D;
+
+    border:1px solid #BBF7D0;
+
+    border-radius:18px;
+
+    padding:8px 16px;
+
+    font-size:18px;
+    font-weight:700;
+}
+
+
+
+/* =========================================================
+   WELCOME BANNER
+   ========================================================= */
+
+QFrame#welcomeBannerCard
+{
+    background:qlineargradient(
+        x1:0,y1:0,
+        x2:1,y2:1,
+        stop:0 rgba(255,255,255,240),
+        stop:1 rgba(248,251,255,220)
+    );
+
+    border:1px solid rgba(25,2,5,18);
+
+    border-radius:30px;
+}
+
+
+
+/* =========================================================
+   CARD BASE
+   ========================================================= */
+
+QFrame#cardKey,
+QFrame#cardSign,
+QFrame#cardVerify,
+QFrame#cardLogs
+{
+    background:rgba(255,255,255,220);
+
+    border-radius:28px;
+
+    border:1px solid rgba(255,255,255,180);
+
+    padding:18px;
+}
+
+
+
+/* =========================================================
+   CARD COLORS
+   ========================================================= */
+
+QFrame#cardKey
+{
+    background:qlineargradient(
+        x1:0,y1:0,x2:1,y2:1,
+        stop:0 #F0F7FF,
+        stop:1 #FFFFFF
+    );
+
+    border-top:5px solid #3B82F6;
+}
+
+QFrame#cardSign
+{
+    background:qlineargradient(
+        x1:0,y1:0,x2:1,y2:1,
+        stop:0 #F0FFF8,
+        stop:1 #FFFFFF
+    );
+
+    border-top:5px solid #10B981;
+}
+
+QFrame#cardVerify
+{
+    background:qlineargradient(
+        x1:0,y1:0,x2:1,y2:1,
+        stop:0 #F7F2FF,
+        stop:1 #FFFFFF
+    );
+
+    border-top:5px solid #8B5CF6;
+}
+
+QFrame#cardLogs
+{
+    background:qlineargradient(
+        x1:0,y1:0,x2:1,y2:1,
+        stop:0 #FFF8E8,
+        stop:1 #FFFFFF
+    );
+
+    border-top:5px solid #F59E0B;
+}
+
+
+
+/* =========================================================
+   CARD HOVER
+   ========================================================= */
+
+QFrame#cardKey:hover,
+QFrame#cardSign:hover,
+QFrame#cardVerify:hover,
+QFrame#cardLogs:hover
+{
+    border:1px solid #CBD5E1;
+}
+
+
+
+/* =========================================================
+   CARD TITLE
+   ========================================================= */
+
+QLabel[class="cardTitle"]
+{
+    font-size:17px;
+    font-weight:700;
+
+    color:#0F172A;
+}
+
+QLabel[class="cardSubtitle"]
+{
+    color:#64748B;
+}
+
+/* =========================================================
+   INPUT
+   ========================================================= */
+
+QLineEdit,
+QTextEdit,
+QPlainTextEdit
+{
+    background:#FFFFFF;
+
+    border:1px solid #DCE4EE;
+
+    border-radius:14px;
+
+    padding:12px;
+
+    color:#0F172A;
+
+    selection-background-color:#2563EB;
+}
+
+QLineEdit:focus,
+QTextEdit:focus,
+QPlainTextEdit:focus
+{
+    border:2px solid #3B82F6;
+}
+
+
+
+/* =========================================================
+   COMBOBOX
+   ========================================================= */
+
+QComboBox
+{
+    background:#FFFFFF;
+
+    border:1px solid #DCE4EE;
+
+    border-radius:14px;
+
+    padding:10px;
+}
+
+QComboBox:hover
+{
+    border:1px solid #3B82F6;
+}
+
+
+
+/* =========================================================
+   PRIMARY BUTTON
+   ========================================================= */
+
+QPushButton
+{
+    background:qlineargradient(
+        x1:0,y1:0,x2:1,y2:1,
+        stop:0 #2563EB,
+        stop:1 #3B82F6
+    );
+
+    color:white;
+
+    border:none;
+
+    border-radius:14px;
+
+    min-height:42px;
+
+    padding-left:18px;
+    padding-right:18px;
+
+    font-size:14px;
+    font-weight:700;
+}
+
+QPushButton:hover
+{
+    background:qlineargradient(
+        x1:0,y1:0,x2:1,y2:1,
+        stop:0 #1D4ED8,
+        stop:1 #2563EB
+    );
+}
+
+QPushButton:pressed
+{
+    padding-top:2px;
+}
+
+
+
+/* =========================================================
+   SECONDARY BUTTON
+   ========================================================= */
+
+QPushButton#secondaryButton
+{
+    background:#FFFFFF;
+
+    color:#334155;
+
+    border:1px solid #DCE4EE;
+}
+
+QPushButton#secondaryButton:hover
+{
+    background:#F8FAFC;
+}
+
+
+
+/* =========================================================
+   TABLE
+   ========================================================= */
+
+QTableWidget
+{
+    background:white;
+
+    border:none;
+
+    border-radius:18px;
+
+    gridline-color:#E5EAF3;
+}
+
+QHeaderView::section
+{
+    background:#F8FAFC;
+
+    border:none;
+
+    padding:10px;
+
+    font-weight:700;
+}
+
+
+
+/* =========================================================
+   STATUS BAR
+   ========================================================= */
+
+QStatusBar
+{
+    background:#FFFFFF;
+
+    border-top:1px solid #E5EAF3;
+
+    color:#64748B;
+}
+
+
+
+/* =========================================================
+   SCROLLBAR
+   ========================================================= */
+
+QScrollBar:vertical
+{
+    background:transparent;
+
+    width:10px;
+}
+
+QScrollBar::handle:vertical
+{
+    background:#CBD5E1;
+
+    border-radius:5px;
+}
+
+QScrollBar::handle:vertical:hover
+{
+    background:#94A3B8;
+}
+
+QScrollBar::add-line:vertical,
+QScrollBar::sub-line:vertical
+{
+    height:0;
+}
+
+
+
+/* =========================================================
+   TOOLTIP
+   ========================================================= */
+
+QToolTip
+{
+    background:#0F172A;
+
+    color:white;
+
+    border:none;
+
+    padding:8px;
+
+    border-radius:8px;
+}
+
+/* =========================
+   GLOBAL LABEL FIX
+   ========================= */
+
+QLabel
+{
+    color:#0F172A;
+    background:transparent;
+}
+
+/* Dashboard Cards */
+
+#cardKey QLabel,
+#cardSign QLabel,
+#cardVerify QLabel,
+#cardLogs QLabel
+{
+    color:#0F172A;
+}
+
+/* Dashboard Numbers */
+
+#cardKeyVal
+{
+    color:#2563EB;
+    font-size:32px;
+    font-weight:800;
+}
+
+#cardSignVal
+{
+    color:#10B981;
+    font-size:32px;
+    font-weight:800;
+}
+
+#cardVerifyVal
+{
+    color:#8B5CF6;
+    font-size:32px;
+    font-weight:800;
+}
+
+#cardLogsVal
+{
+    color:#F59E0B;
+    font-size:32px;
+    font-weight:800;
+}
+
+/* Card titles */
+
+#cardKeyTitle,
+#cardSignTitle,
+#cardVerifyTitle,
+#cardLogsTitle,
+#bannerTitle
+{
+    color:#0F172A;
+    font-weight:700;
+}
+
+/* Card subtitles */
+
+#cardKeySub,
+#cardSignSub,
+#cardVerifySub,
+#cardLogsSub,
+#bannerDesc,
+#subTitle
+{
+    color:#64748B;
+}
+
+/* Sidebar labels */
+
+#logoLabel
+{
+    color:#1E293B;
+    font-size:22px;
+    font-weight:700;
+}
+
+#navSectionLabel
+{
+    color:#94A3B8;
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:1px;
+}
+
+#brandTitle
+{
+    color:#0F172A;
+    font-weight:700;
+}
+
+#brandSub,
+#brandVersion
+{
+    color:#64748B;
+}
+
+/* Footer */
+
+#lblTime,
+#lblDate,
+#lblUser,
+#labelLastAction
+{
+    color:#64748B;
+}
