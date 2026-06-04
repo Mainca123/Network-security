@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Test</class>
+ <widget class="QWidget" name="Test">
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="contentsMargins">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>10</width>
+     <height>10</height>
+    </rect>
+   </property>
+  </layout>
+ </widget>
+</ui>

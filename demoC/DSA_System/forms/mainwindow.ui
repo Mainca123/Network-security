@@ -6,15 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1343</width>
-    <height>670</height>
+    <width>1440</width>
+    <height>860</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Bộ Bảo Mật DSA</string>
+   <string>Preview : giao diện</string>
   </property>
-  <widget class="QWidget" name="centralwidget">
-   <layout class="QVBoxLayout" name="globalLayout">
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QHBoxLayout" name="mainHLayout">
     <property name="spacing">
      <number>0</number>
     </property>
@@ -31,1233 +31,1294 @@
      <number>0</number>
     </property>
     <item>
-     <layout class="QHBoxLayout" name="bodyLayout">
-      <property name="spacing">
-       <number>0</number>
-      </property>
-      <item>
-       <widget class="QFrame" name="sidebar">
-        <property name="minimumSize">
-         <size>
-          <width>240</width>
-          <height>0</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>240</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <layout class="QVBoxLayout" name="sidebarLayout">
-         <property name="spacing">
-          <number>4</number>
-         </property>
-         <property name="leftMargin">
-          <number>16</number>
-         </property>
-         <property name="topMargin">
-          <number>24</number>
-         </property>
-         <property name="rightMargin">
-          <number>16</number>
-         </property>
-         <property name="bottomMargin">
-          <number>24</number>
-         </property>
-         <item>
-          <widget class="QFrame" name="logoFrame">
-           <layout class="QHBoxLayout" name="logoLayout">
-            <property name="spacing">
-             <number>10</number>
-            </property>
-            <property name="leftMargin">
-             <number>8</number>
-            </property>
-            <property name="topMargin">
-             <number>8</number>
-            </property>
-            <property name="rightMargin">
-             <number>8</number>
-            </property>
-            <property name="bottomMargin">
-             <number>8</number>
-            </property>
-            <item>
-             <widget class="QLabel" name="logoIcon">
-              <property name="text">
-               <string>🛡</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLabel" name="logoLabel">
-              <property name="text">
-               <string>DSA Security</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-         </item>
-         <item>
-          <spacer name="logoSpacer">
-           <property name="orientation">
-            <enum>Qt::Orientation::Vertical</enum>
-           </property>
-           <property name="sizeType">
-            <enum>QSizePolicy::Policy::Fixed</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>20</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item>
-          <widget class="QLabel" name="navSectionLabel">
-           <property name="text">
-            <string>ĐIỀU HƯỚNG</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <spacer name="navLabelSpacer">
-           <property name="orientation">
-            <enum>Qt::Orientation::Vertical</enum>
-           </property>
-           <property name="sizeType">
-            <enum>QSizePolicy::Policy::Fixed</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>20</width>
-             <height>6</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item>
-          <widget class="QPushButton" name="btnDashboard">
-           <property name="text">
-            <string>🏠  Bảng điều khiển</string>
-           </property>
-           <property name="checkable">
-            <bool>true</bool>
-           </property>
-           <property name="checked">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="btnKeyManagement">
-           <property name="text">
-            <string>🔑  Quản lý khóa</string>
-           </property>
-           <property name="checkable">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="btnSign">
-           <property name="text">
-            <string>✍️  Ký tập tin</string>
-           </property>
-           <property name="checkable">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="btnVerify">
-           <property name="text">
-            <string>✅  Xác minh chữ ký</string>
-           </property>
-           <property name="checkable">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="btnLogs">
-           <property name="text">
-            <string>📜  Nhật ký</string>
-           </property>
-           <property name="checkable">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="btnAdvanced">
-           <property name="text">
-            <string>⚙️  Nâng cao</string>
-           </property>
-           <property name="checkable">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <spacer name="verticalSpacer">
-           <property name="orientation">
-            <enum>Qt::Orientation::Vertical</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>20</width>
-             <height>40</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item>
-          <widget class="QFrame" name="brandCard">
-           <layout class="QVBoxLayout" name="brandLayout">
-            <property name="spacing">
-             <number>4</number>
-            </property>
-            <property name="leftMargin">
-             <number>12</number>
-            </property>
-            <property name="topMargin">
-             <number>12</number>
-            </property>
-            <property name="rightMargin">
-             <number>12</number>
-            </property>
-            <property name="bottomMargin">
-             <number>12</number>
-            </property>
-            <item>
-             <widget class="QLabel" name="brandTitle">
-              <property name="text">
-               <string>DSA Security Suite</string>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignmentFlag::AlignLeading</set>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLabel" name="brandSub">
-              <property name="text">
-               <string>An toàn · Tin cậy · Bảo mật</string>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignmentFlag::AlignLeading</set>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLabel" name="brandVersion">
-              <property name="text">
-               <string>v1.0.0</string>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignmentFlag::AlignLeading</set>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-      </item>
-      <item>
-       <widget class="QFrame" name="mainContent">
-        <layout class="QVBoxLayout" name="mainContentLayout">
-         <property name="spacing">
-          <number>20</number>
-         </property>
-         <property name="leftMargin">
-          <number>32</number>
-         </property>
-         <property name="topMargin">
-          <number>28</number>
-         </property>
-         <property name="rightMargin">
-          <number>32</number>
-         </property>
-         <property name="bottomMargin">
-          <number>20</number>
-         </property>
-         <item>
-          <layout class="QHBoxLayout" name="headerRow">
-           <item>
-            <layout class="QVBoxLayout" name="titleHeaderStack">
-             <property name="spacing">
-              <number>3</number>
-             </property>
-             <item>
-              <widget class="QLabel" name="mainTitle">
-               <property name="text">
-                <string>Bảng điều khiển</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLabel" name="subTitle">
-               <property name="text">
-                <string>Chào mừng bạn đến với Bộ bảo mật DSA</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </item>
-           <item>
-            <spacer name="headerSpacer">
-             <property name="orientation">
-              <enum>Qt::Orientation::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-           <item>
-            <widget class="QLabel" name="labelSystemStatus">
-             <property name="text">
-              <string>Hệ thống:             Sẵn sàng</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </item>
-         <item>
-          <widget class="QStackedWidget" name="stackedWidget">
-           <property name="currentIndex">
-            <number>0</number>
-           </property>
-           <widget class="QWidget" name="pageDashboard">
-            <property name="styleSheet">
-             <string notr="true"/>
-            </property>
-            <layout class="QVBoxLayout" name="dashboardPageLayout">
-             <property name="spacing">
-              <number>20</number>
-             </property>
-             <property name="leftMargin">
-              <number>0</number>
-             </property>
-             <property name="topMargin">
-              <number>0</number>
-             </property>
-             <property name="rightMargin">
-              <number>0</number>
-             </property>
-             <property name="bottomMargin">
-              <number>0</number>
-             </property>
-             <item>
-              <layout class="QHBoxLayout" name="statsCardsLayout">
-               <property name="spacing">
-                <number>16</number>
-               </property>
-               <item>
-                <widget class="QFrame" name="cardKey">
-                 <layout class="QVBoxLayout" name="cardKeyLayout">
-                  <property name="spacing">
-                   <number>4</number>
-                  </property>
-                  <property name="leftMargin">
-                   <number>20</number>
-                  </property>
-                  <property name="topMargin">
-                   <number>18</number>
-                  </property>
-                  <property name="rightMargin">
-                   <number>20</number>
-                  </property>
-                  <property name="bottomMargin">
-                   <number>18</number>
-                  </property>
-                  <item>
-                   <widget class="QLabel" name="cardKeyTitle">
-                    <property name="font">
-                     <font>
-                      <pointsize>16</pointsize>
-                      <bold>true</bold>
-                     </font>
-                    </property>
-                    <property name="text">
-                     <string>Khóa đã tạo</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QLabel" name="cardKeyVal">
-                    <property name="font">
-                     <font>
-                      <pointsize>22</pointsize>
-                      <bold>true</bold>
-                     </font>
-                    </property>
-                    <property name="text">
-                     <string>12</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QLabel" name="cardKeySub">
-                    <property name="font">
-                     <font>
-                      <pointsize>16</pointsize>
-                     </font>
-                    </property>
-                    <property name="text">
-                     <string>Cặp khóa DSA</string>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </widget>
-               </item>
-               <item>
-                <widget class="QFrame" name="cardSign">
-                 <layout class="QVBoxLayout" name="cardSignLayout">
-                  <property name="spacing">
-                   <number>4</number>
-                  </property>
-                  <property name="leftMargin">
-                   <number>20</number>
-                  </property>
-                  <property name="topMargin">
-                   <number>18</number>
-                  </property>
-                  <property name="rightMargin">
-                   <number>20</number>
-                  </property>
-                  <property name="bottomMargin">
-                   <number>18</number>
-                  </property>
-                  <item>
-                   <widget class="QLabel" name="cardSignTitle">
-                    <property name="font">
-                     <font>
-                      <pointsize>16</pointsize>
-                      <bold>true</bold>
-                     </font>
-                    </property>
-                    <property name="text">
-                     <string>Tập tin đã ký</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QLabel" name="cardSignVal">
-                    <property name="font">
-                     <font>
-                      <pointsize>22</pointsize>
-                      <bold>true</bold>
-                     </font>
-                    </property>
-                    <property name="text">
-                     <string>120</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QLabel" name="cardSignSub">
-                    <property name="font">
-                     <font>
-                      <pointsize>16</pointsize>
-                     </font>
-                    </property>
-                    <property name="text">
-                     <string>Tập tin</string>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </widget>
-               </item>
-               <item>
-                <widget class="QFrame" name="cardVerify">
-                 <layout class="QVBoxLayout" name="cardVerifyLayout">
-                  <property name="spacing">
-                   <number>4</number>
-                  </property>
-                  <property name="leftMargin">
-                   <number>20</number>
-                  </property>
-                  <property name="topMargin">
-                   <number>18</number>
-                  </property>
-                  <property name="rightMargin">
-                   <number>20</number>
-                  </property>
-                  <property name="bottomMargin">
-                   <number>18</number>
-                  </property>
-                  <item>
-                   <widget class="QLabel" name="cardVerifyTitle">
-                    <property name="font">
-                     <font>
-                      <pointsize>16</pointsize>
-                      <bold>true</bold>
-                     </font>
-                    </property>
-                    <property name="text">
-                     <string>Xác minh thành công</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QLabel" name="cardVerifyVal">
-                    <property name="font">
-                     <font>
-                      <pointsize>22</pointsize>
-                      <bold>true</bold>
-                     </font>
-                    </property>
-                    <property name="text">
-                     <string>90</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QLabel" name="cardVerifySub">
-                    <property name="font">
-                     <font>
-                      <pointsize>16</pointsize>
-                     </font>
-                    </property>
-                    <property name="text">
-                     <string>Lần</string>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </widget>
-               </item>
-               <item>
-                <widget class="QFrame" name="cardLogs">
-                 <layout class="QVBoxLayout" name="cardLogsLayout">
-                  <property name="spacing">
-                   <number>4</number>
-                  </property>
-                  <property name="leftMargin">
-                   <number>20</number>
-                  </property>
-                  <property name="topMargin">
-                   <number>18</number>
-                  </property>
-                  <property name="rightMargin">
-                   <number>20</number>
-                  </property>
-                  <property name="bottomMargin">
-                   <number>18</number>
-                  </property>
-                  <item>
-                   <widget class="QLabel" name="cardLogsTitle">
-                    <property name="font">
-                     <font>
-                      <pointsize>16</pointsize>
-                      <bold>true</bold>
-                     </font>
-                    </property>
-                    <property name="text">
-                     <string>Nhật ký hệ thống</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QLabel" name="cardLogsVal">
-                    <property name="font">
-                     <font>
-                      <pointsize>22</pointsize>
-                      <bold>true</bold>
-                     </font>
-                    </property>
-                    <property name="text">
-                     <string>150</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QLabel" name="cardLogsSub">
-                    <property name="font">
-                     <font>
-                      <pointsize>16</pointsize>
-                     </font>
-                    </property>
-                    <property name="text">
-                     <string>Bản ghi</string>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </widget>
-               </item>
-              </layout>
-             </item>
-             <item>
-              <widget class="QFrame" name="welcomeBannerCard">
-               <layout class="QHBoxLayout" name="bannerInnerLayout">
-                <property name="spacing">
-                 <number>24</number>
-                </property>
-                <property name="leftMargin">
-                 <number>28</number>
-                </property>
-                <property name="topMargin">
-                 <number>24</number>
-                </property>
-                <property name="rightMargin">
-                 <number>28</number>
-                </property>
-                <property name="bottomMargin">
-                 <number>24</number>
-                </property>
-                <item>
-                 <widget class="QLabel" name="bannerImagePlaceholder">
-                  <property name="minimumSize">
-                   <size>
-                    <width>240</width>
-                    <height>160</height>
-                   </size>
-                  </property>
-                  <property name="maximumSize">
-                   <size>
-                    <width>240</width>
-                    <height>160</height>
-                   </size>
-                  </property>
-                  <property name="pixmap">
-                   <pixmap>../lock.ico</pixmap>
-                  </property>
-                  <property name="scaledContents">
-                   <bool>true</bool>
-                  </property>
-                  <property name="alignment">
-                   <set>Qt::AlignmentFlag::AlignCenter</set>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <layout class="QVBoxLayout" name="bannerTextLayout">
-                  <property name="spacing">
-                   <number>12</number>
-                  </property>
-                  <item>
-                   <widget class="QLabel" name="bannerTitle">
-                    <property name="font">
-                     <font>
-                      <pointsize>16</pointsize>
-                      <bold>true</bold>
-                     </font>
-                    </property>
-                    <property name="text">
-                     <string>Chào mừng đến với Bộ bảo mật DSA</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QLabel" name="bannerDesc">
-                    <property name="font">
-                     <font>
-                      <pointsize>16</pointsize>
-                     </font>
-                    </property>
-                    <property name="text">
-                     <string>Ứng dụng hỗ trợ tạo khóa DSA, ký và xác minh chữ ký số đảm bảo tính toàn vẹn và xác thực dữ liệu.</string>
-                    </property>
-                    <property name="wordWrap">
-                     <bool>true</bool>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </item>
-               </layout>
-              </widget>
-             </item>
-            </layout>
-           </widget>
-           <widget class="QWidget" name="pageKeyManagement">
-            <layout class="QVBoxLayout" name="keyPageLayout">
-             <property name="spacing">
-              <number>16</number>
-             </property>
-             <property name="leftMargin">
-              <number>0</number>
-             </property>
-             <property name="topMargin">
-              <number>0</number>
-             </property>
-             <property name="rightMargin">
-              <number>0</number>
-             </property>
-             <property name="bottomMargin">
-              <number>0</number>
-             </property>
-             <item>
-              <widget class="QFrame" name="keyActionsCard">
-               <layout class="QHBoxLayout" name="keyActionsLayout">
-                <property name="spacing">
-                 <number>12</number>
-                </property>
-                <property name="leftMargin">
-                 <number>20</number>
-                </property>
-                <property name="topMargin">
-                 <number>16</number>
-                </property>
-                <property name="rightMargin">
-                 <number>20</number>
-                </property>
-                <property name="bottomMargin">
-                 <number>16</number>
-                </property>
-                <item>
-                 <widget class="QPushButton" name="btnGenerateKeys">
-                  <property name="text">
-                   <string>🔑  Tạo Cặp Khóa Mới</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QPushButton" name="btnSaveKeyPair">
-                  <property name="text">
-                   <string>⬇️  Tải Xuống Cả 2 Khóa</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <spacer name="keyActionsSpacer">
-                  <property name="orientation">
-                   <enum>Qt::Orientation::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>40</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-                <item>
-                 <widget class="QLabel" name="labelLoadedKey">
-                  <property name="text">
-                   <string>Chưa nạp khóa</string>
-                  </property>
-                  <property name="alignment">
-                   <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </widget>
-             </item>
-             <item>
-              <widget class="QTextEdit" name="textKeyInfo">
-               <property name="readOnly">
-                <bool>true</bool>
-               </property>
-               <property name="placeholderText">
-                <string>Thông tin khóa sẽ hiển thị tại đây sau khi tạo...</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </widget>
-           <widget class="QWidget" name="pageSign">
-            <layout class="QVBoxLayout" name="signPageLayout">
-             <property name="spacing">
-              <number>14</number>
-             </property>
-             <property name="leftMargin">
-              <number>0</number>
-             </property>
-             <property name="topMargin">
-              <number>0</number>
-             </property>
-             <property name="rightMargin">
-              <number>0</number>
-             </property>
-             <property name="bottomMargin">
-              <number>0</number>
-             </property>
-             <item>
-              <widget class="QFrame" name="signFormCard">
-               <layout class="QVBoxLayout" name="signFormLayout">
-                <property name="spacing">
-                 <number>12</number>
-                </property>
-                <property name="leftMargin">
-                 <number>24</number>
-                </property>
-                <property name="topMargin">
-                 <number>20</number>
-                </property>
-                <property name="rightMargin">
-                 <number>24</number>
-                </property>
-                <property name="bottomMargin">
-                 <number>20</number>
-                </property>
-                <item>
-                 <widget class="QLabel" name="labelSignFileTitle">
-                  <property name="text">
-                   <string>Tập tin cần ký</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <layout class="QHBoxLayout" name="signFileRow">
-                  <property name="spacing">
-                   <number>8</number>
-                  </property>
-                  <item>
-                   <widget class="QLineEdit" name="lineSignFile">
-                    <property name="placeholderText">
-                     <string>Chọn hoặc nhập đường dẫn tập tin...</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QPushButton" name="btnChooseSignFile">
-                    <property name="text">
-                     <string>📁 Chọn file</string>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </item>
-                <item>
-                 <widget class="QLabel" name="labelPrivateKeyTitle">
-                  <property name="text">
-                   <string>Khóa bí mật</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <layout class="QHBoxLayout" name="privKeyRow">
-                  <property name="spacing">
-                   <number>8</number>
-                  </property>
-                  <item>
-                   <widget class="QLineEdit" name="linePrivateKey">
-                    <property name="placeholderText">
-                     <string>Đường dẫn đến khóa bí mật (.pem)...</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QPushButton" name="btnChoosePrivateKey">
-                    <property name="text">
-                     <string>🔐 Chọn khóa</string>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </item>
-                <item>
-                 <widget class="QPushButton" name="btnSignFile">
-                  <property name="text">
-                   <string>Thực hiện Ký số</string>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </widget>
-             </item>
-             <item>
-              <widget class="QTextEdit" name="textSign">
-               <property name="readOnly">
-                <bool>true</bool>
-               </property>
-               <property name="placeholderText">
-                <string>Kết quả ký số sẽ hiển thị tại đây...</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </widget>
-           <widget class="QWidget" name="pageVerify">
-            <layout class="QVBoxLayout" name="verifyPageLayout">
-             <property name="spacing">
-              <number>14</number>
-             </property>
-             <property name="leftMargin">
-              <number>0</number>
-             </property>
-             <property name="topMargin">
-              <number>0</number>
-             </property>
-             <property name="rightMargin">
-              <number>0</number>
-             </property>
-             <property name="bottomMargin">
-              <number>0</number>
-             </property>
-             <item>
-              <widget class="QFrame" name="verifyFormCard">
-               <layout class="QVBoxLayout" name="verifyFormLayout">
-                <property name="spacing">
-                 <number>12</number>
-                </property>
-                <property name="leftMargin">
-                 <number>24</number>
-                </property>
-                <property name="topMargin">
-                 <number>20</number>
-                </property>
-                <property name="rightMargin">
-                 <number>24</number>
-                </property>
-                <property name="bottomMargin">
-                 <number>20</number>
-                </property>
-                <item>
-                 <widget class="QLabel" name="labelVerifyFileTitle">
-                  <property name="font">
-                   <font>
-                    <pointsize>16</pointsize>
-                   </font>
-                  </property>
-                  <property name="text">
-                   <string>Tập tin cần kiểm tra</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <layout class="QHBoxLayout" name="verifyFileRow">
-                  <property name="spacing">
-                   <number>8</number>
-                  </property>
-                  <item>
-                   <widget class="QLineEdit" name="lineVerifyFile">
-                    <property name="placeholderText">
-                     <string>Chọn hoặc nhập đường dẫn tập tin...</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QPushButton" name="btnChooseVerifyFile">
-                    <property name="text">
-                     <string>📁 Chọn file</string>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </item>
-                <item>
-                 <widget class="QLabel" name="labelSigFileTitle">
-                  <property name="font">
-                   <font>
-                    <pointsize>18</pointsize>
-                   </font>
-                  </property>
-                  <property name="text">
-                   <string>Tập tin chữ ký (.sig)</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <layout class="QHBoxLayout" name="sigFileRow">
-                  <property name="spacing">
-                   <number>8</number>
-                  </property>
-                  <item>
-                   <widget class="QLineEdit" name="lineSignatureFile">
-                    <property name="placeholderText">
-                     <string>Đường dẫn đến tập tin chữ ký...</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QPushButton" name="btnChooseSignatureFile">
-                    <property name="text">
-                     <string>📁 Chọn file</string>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </item>
-                <item>
-                 <widget class="QLabel" name="labelPubKeyTitle">
-                  <property name="font">
-                   <font>
-                    <pointsize>18</pointsize>
-                   </font>
-                  </property>
-                  <property name="text">
-                   <string>Khóa công khai</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <layout class="QHBoxLayout" name="pubKeyRow">
-                  <property name="spacing">
-                   <number>8</number>
-                  </property>
-                  <item>
-                   <widget class="QLineEdit" name="linePublicKey">
-                    <property name="placeholderText">
-                     <string>Đường dẫn đến khóa công khai (.pem)...</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QPushButton" name="btnChoosePublicKey">
-                    <property name="text">
-                     <string>🔐 Chọn khóa</string>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </item>
-                <item>
-                 <layout class="QHBoxLayout" name="verifyActionRow">
-                  <property name="spacing">
-                   <number>16</number>
-                  </property>
-                  <item>
-                   <widget class="QPushButton" name="btnVerifySignature">
-                    <property name="text">
-                     <string>Xác minh Chữ ký</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QLabel" name="labelVerifyResult">
-                    <property name="enabled">
-                     <bool>false</bool>
-                    </property>
-                    <property name="font">
-                     <font>
-                      <pointsize>20</pointsize>
-                      <bold>true</bold>
-                     </font>
-                    </property>
-                    <property name="text">
-                     <string>Chờ xác minh...</string>
-                    </property>
-                    <property name="alignment">
-                     <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </item>
-               </layout>
-              </widget>
-             </item>
-            </layout>
-           </widget>
-           <widget class="QWidget" name="pageLogs">
-            <layout class="QVBoxLayout" name="logsPageLayout">
-             <property name="spacing">
-              <number>0</number>
-             </property>
-             <property name="leftMargin">
-              <number>0</number>
-             </property>
-             <property name="topMargin">
-              <number>0</number>
-             </property>
-             <property name="rightMargin">
-              <number>0</number>
-             </property>
-             <property name="bottomMargin">
-              <number>0</number>
-             </property>
-             <item>
-              <widget class="QPlainTextEdit" name="plainTextEditLogs">
-               <property name="readOnly">
-                <bool>true</bool>
-               </property>
-               <property name="placeholderText">
-                <string>Nhật ký hệ thống sẽ xuất hiện tại đây...</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </widget>
-           <widget class="QWidget" name="pageAdvanced">
-            <layout class="QVBoxLayout" name="advancedPageLayout">
-             <property name="spacing">
-              <number>14</number>
-             </property>
-             <property name="leftMargin">
-              <number>0</number>
-             </property>
-             <property name="topMargin">
-              <number>0</number>
-             </property>
-             <property name="rightMargin">
-              <number>0</number>
-             </property>
-             <property name="bottomMargin">
-              <number>0</number>
-             </property>
-             <item>
-              <widget class="QFrame" name="advancedActionsCard">
-               <layout class="QHBoxLayout" name="advancedActionsLayout">
-                <property name="leftMargin">
-                 <number>20</number>
-                </property>
-                <property name="topMargin">
-                 <number>16</number>
-                </property>
-                <property name="rightMargin">
-                 <number>20</number>
-                </property>
-                <property name="bottomMargin">
-                 <number>16</number>
-                </property>
-                <item>
-                 <widget class="QPushButton" name="btnGenerateParameters">
-                  <property name="text">
-                   <string>⚙️  Tạo tham số DSA</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <spacer name="advancedSpacer">
-                  <property name="orientation">
-                   <enum>Qt::Orientation::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>40</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-               </layout>
-              </widget>
-             </item>
-             <item>
-              <widget class="QTextEdit" name="textParameters">
-               <property name="placeholderText">
-                <string>Tham số DSA sẽ hiển thị tại đây...</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </widget>
-          </widget>
-         </item>
-         <item>
-          <widget class="QFrame" name="statusBar">
-           <property name="maximumSize">
-            <size>
-             <width>16777215</width>
-             <height>36</height>
-            </size>
-           </property>
-           <layout class="QHBoxLayout" name="statusBarLayout">
-            <property name="spacing">
-             <number>16</number>
-            </property>
-            <property name="leftMargin">
-             <number>0</number>
-            </property>
-            <property name="topMargin">
-             <number>0</number>
-            </property>
-            <property name="rightMargin">
-             <number>0</number>
-            </property>
-            <property name="bottomMargin">
-             <number>0</number>
-            </property>
-            <item>
-             <widget class="QLabel" name="labelLastAction">
-              <property name="text">
-               <string>Hành động cuối: Sẵn sàng</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-      </item>
-     </layout>
-    </item>
-    <item>
-     <widget class="QFrame" name="footerBar">
-      <property name="minimumSize">
-       <size>
-        <width>0</width>
-        <height>36</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>16777215</width>
-        <height>36</height>
-       </size>
-      </property>
-      <layout class="QHBoxLayout" name="footerLayout">
+     <widget class="QFrame" name="sidebarFrame">
+      <layout class="QVBoxLayout" name="sidebarLayout">
        <property name="spacing">
-        <number>20</number>
+        <number>10</number>
        </property>
        <property name="leftMargin">
-        <number>20</number>
+        <number>18</number>
        </property>
        <property name="topMargin">
-        <number>0</number>
+        <number>18</number>
        </property>
        <property name="rightMargin">
-        <number>20</number>
+        <number>18</number>
        </property>
        <property name="bottomMargin">
-        <number>0</number>
+        <number>18</number>
        </property>
        <item>
-        <widget class="QLabel" name="lblTime">
+        <widget class="QLabel" name="logoIconLabel">
          <property name="text">
-          <string>10:30:45 AM</string>
+          <string>🛡️</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignmentFlag::AlignHCenter</set>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="lblDate">
+        <widget class="QLabel" name="logoTextLabel">
          <property name="text">
-          <string>18/05/2026</string>
+          <string>System DSA</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignmentFlag::AlignHCenter</set>
          </property>
         </widget>
        </item>
        <item>
-        <spacer name="footerSpacer">
+        <spacer name="spacerTopSB">
          <property name="orientation">
-          <enum>Qt::Orientation::Horizontal</enum>
+          <enum>Qt::Orientation::Vertical</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Policy::Fixed</enum>
          </property>
          <property name="sizeHint" stdset="0">
           <size>
-           <width>40</width>
-           <height>20</height>
+           <width>0</width>
+           <height>8</height>
           </size>
          </property>
         </spacer>
        </item>
        <item>
-        <widget class="QLabel" name="lblUser">
+        <widget class="QPushButton" name="btnThuCong">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>56</height>
+          </size>
+         </property>
          <property name="text">
-          <string>Admin</string>
+          <string>✋  Thủ công</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnTaoKhoaTuDong">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>56</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>⚙️  Tự động</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnTaoChuKy">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>56</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>✍️  Tạo chữ ký</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnXacThucChuKy">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>56</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>🔒  Xác thực chữ ký</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnNhatKyHeThong">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>56</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>📋  Log hệ thống</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="spacerMidSB">
+         <property name="orientation">
+          <enum>Qt::Orientation::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>0</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QLabel" name="footerLabel">
+         <property name="text">
+          <string>Hệ thống tạo và xác thực chữ ký
+Bảo mật - An toàn - Uy tín
+Phiên bản: v2.0</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignmentFlag::AlignHCenter</set>
          </property>
         </widget>
        </item>
       </layout>
      </widget>
+    </item>
+    <item>
+     <layout class="QVBoxLayout" name="contentVLayout">
+      <property name="spacing">
+       <number>0</number>
+      </property>
+      <property name="leftMargin">
+       <number>0</number>
+      </property>
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <property name="rightMargin">
+       <number>0</number>
+      </property>
+      <property name="bottomMargin">
+       <number>0</number>
+      </property>
+      <item>
+       <layout class="QHBoxLayout" name="headerLayout">
+        <property name="leftMargin">
+         <number>28</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>28</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="QLabel" name="pageTitle">
+          <property name="text">
+           <string>Bản điều khiển</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="headerSpacer">
+          <property name="orientation">
+           <enum>Qt::Orientation::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="statusVLayout">
+          <property name="spacing">
+           <number>4</number>
+          </property>
+          <item>
+           <widget class="QLabel" name="statusTitle">
+            <property name="text">
+             <string>Trạng thái hệ thống</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnStatus">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="text">
+             <string>Sẵn sàng</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="verticalSpacer">
+            <property name="orientation">
+             <enum>Qt::Orientation::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>0</width>
+              <height>5</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QStackedWidget" name="stackedWidget">
+        <property name="currentIndex">
+         <number>3</number>
+        </property>
+        <widget class="QWidget" name="pageThuCong">
+         <layout class="QVBoxLayout" name="tcMainLayout">
+          <property name="spacing">
+           <number>14</number>
+          </property>
+          <property name="leftMargin">
+           <number>18</number>
+          </property>
+          <property name="topMargin">
+           <number>14</number>
+          </property>
+          <property name="rightMargin">
+           <number>18</number>
+          </property>
+          <property name="bottomMargin">
+           <number>14</number>
+          </property>
+          <item>
+           <layout class="QHBoxLayout" name="tcCardsLayout">
+            <property name="spacing">
+             <number>14</number>
+            </property>
+            <item>
+             <widget class="QFrame" name="cardTaoKhoa">
+              <layout class="QVBoxLayout" name="tkVL">
+               <property name="spacing">
+                <number>8</number>
+               </property>
+               <property name="leftMargin">
+                <number>16</number>
+               </property>
+               <property name="topMargin">
+                <number>14</number>
+               </property>
+               <property name="rightMargin">
+                <number>16</number>
+               </property>
+               <property name="bottomMargin">
+                <number>14</number>
+               </property>
+               <item>
+                <widget class="QLabel" name="cardTitle">
+                 <property name="text">
+                  <string>Tạo khóa</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignmentFlag::AlignHCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="lbP">
+                 <property name="text">
+                  <string>Nhập P</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="inputP">
+                 <property name="placeholderText">
+                  <string>Nhập số tự nhiên lớn hơn 0</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="lbQ">
+                 <property name="text">
+                  <string>Nhập Q</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="inputQ">
+                 <property name="placeholderText">
+                  <string>Nhập số tự nhiên lớn hơn 0</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="lbG">
+                 <property name="text">
+                  <string>Nhập G</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="inputG">
+                 <property name="placeholderText">
+                  <string>Nhập số tự nhiên lớn hơn 0</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="lbX">
+                 <property name="text">
+                  <string>Nhập X</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="inputX">
+                 <property name="placeholderText">
+                  <string>Nhập số tự nhiên lớn hơn 0</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <spacer>
+                 <property name="orientation">
+                  <enum>Qt::Orientation::Vertical</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>0</width>
+                   <height>3</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="tkBtnHL">
+                 <item>
+                  <spacer name="horizontalSpacer">
+                   <property name="orientation">
+                    <enum>Qt::Orientation::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>60</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="btnXoaKoaThuCong">
+                   <property name="text">
+                    <string>Xóa nhanh</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="btnTaoKhoaThuCong">
+                   <property name="text">
+                    <string>Tạo khóa</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QFrame" name="cardTaoChuKyTC">
+              <layout class="QVBoxLayout" name="ckTCVL">
+               <property name="spacing">
+                <number>8</number>
+               </property>
+               <property name="leftMargin">
+                <number>16</number>
+               </property>
+               <property name="topMargin">
+                <number>14</number>
+               </property>
+               <property name="rightMargin">
+                <number>16</number>
+               </property>
+               <property name="bottomMargin">
+                <number>14</number>
+               </property>
+               <item>
+                <widget class="QLabel" name="cardTitle">
+                 <property name="text">
+                  <string>Tạo chữ ký</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignmentFlag::AlignHCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="lbY">
+                 <property name="text">
+                  <string>Nhập Y</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="inputY">
+                 <property name="placeholderText">
+                  <string>Nhập số tự nhiên lớn hơn 0</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="lbVanBanKy">
+                 <property name="text">
+                  <string>Nhập văn bản cần ký</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QTextEdit" name="inputVanBanKy">
+                 <property name="placeholderText">
+                  <string>Nhập số tự nhiên lớn hơn 0</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <spacer>
+                 <property name="orientation">
+                  <enum>Qt::Orientation::Vertical</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>0</width>
+                   <height>6</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="ckTCBtnHL">
+                 <item>
+                  <spacer name="horizontalSpacer_2">
+                   <property name="orientation">
+                    <enum>Qt::Orientation::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>60</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="btnXoaChuKyThuCong">
+                   <property name="text">
+                    <string>Xóa nhanh</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="btnKyThuCong">
+                   <property name="text">
+                    <string>Ký</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QFrame" name="cardXacThucTC">
+              <layout class="QVBoxLayout" name="xtTCVL">
+               <property name="spacing">
+                <number>8</number>
+               </property>
+               <property name="leftMargin">
+                <number>16</number>
+               </property>
+               <property name="topMargin">
+                <number>14</number>
+               </property>
+               <property name="rightMargin">
+                <number>16</number>
+               </property>
+               <property name="bottomMargin">
+                <number>14</number>
+               </property>
+               <item>
+                <widget class="QLabel" name="cardTitle">
+                 <property name="text">
+                  <string>Xác thực chữ ký</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignmentFlag::AlignHCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="lbU">
+                 <property name="text">
+                  <string>Nhập U</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="inputU">
+                 <property name="placeholderText">
+                  <string>Nhập số tự nhiên lớn hơn 0</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="lbV">
+                 <property name="text">
+                  <string>Nhập V</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="inputV">
+                 <property name="placeholderText">
+                  <string>Nhập số tự nhiên lớn hơn 0</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="lbVanBanXT">
+                 <property name="text">
+                  <string>Nhập văn bản cần xác thực</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QTextEdit" name="inputVanBanXacThuc">
+                 <property name="placeholderText">
+                  <string>Nhập số tự nhiên lớn hơn 0</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <spacer>
+                 <property name="orientation">
+                  <enum>Qt::Orientation::Vertical</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>0</width>
+                   <height>6</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="xtTCBtnHL">
+                 <item>
+                  <spacer name="horizontalSpacer_3">
+                   <property name="orientation">
+                    <enum>Qt::Orientation::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>60</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="btnXoaXacThucThuCong">
+                   <property name="text">
+                    <string>Xóa nhanh</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="btnXacThucThuCong">
+                   <property name="text">
+                    <string>Xác nhận</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QFrame" name="cardLogTC">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>150</height>
+             </size>
+            </property>
+            <layout class="QVBoxLayout" name="logTCVL">
+             <property name="spacing">
+              <number>8</number>
+             </property>
+             <property name="leftMargin">
+              <number>16</number>
+             </property>
+             <property name="topMargin">
+              <number>12</number>
+             </property>
+             <property name="rightMargin">
+              <number>16</number>
+             </property>
+             <property name="bottomMargin">
+              <number>12</number>
+             </property>
+             <item>
+              <widget class="QLabel" name="cardTitle">
+               <property name="text">
+                <string>Trạng thái thao tác</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QTextEdit" name="textTrangThaiThaoTacThuCong">
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="pageTaoKhoaTuDong">
+         <layout class="QVBoxLayout" name="tdMainLayout">
+          <property name="spacing">
+           <number>14</number>
+          </property>
+          <property name="leftMargin">
+           <number>18</number>
+          </property>
+          <property name="topMargin">
+           <number>14</number>
+          </property>
+          <property name="rightMargin">
+           <number>18</number>
+          </property>
+          <property name="bottomMargin">
+           <number>14</number>
+          </property>
+          <item>
+           <widget class="QFrame" name="cardTD">
+            <layout class="QVBoxLayout" name="tdCardVL">
+             <property name="spacing">
+              <number>10</number>
+             </property>
+             <property name="leftMargin">
+              <number>20</number>
+             </property>
+             <property name="topMargin">
+              <number>14</number>
+             </property>
+             <property name="rightMargin">
+              <number>20</number>
+             </property>
+             <property name="bottomMargin">
+              <number>16</number>
+             </property>
+             <item>
+              <layout class="QHBoxLayout" name="tdTitleHL">
+               <item>
+                <widget class="QLabel" name="labelThongTinTD">
+                 <property name="text">
+                  <string>Thông tin các tham số</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <spacer>
+                 <property name="orientation">
+                  <enum>Qt::Orientation::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>40</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <widget class="QTextEdit" name="textHienThiKhoaTuDong">
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+               <property name="html">
+                <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+hr { height: 1px; border-width: 0; }
+li.unchecked::marker { content: &quot;\2610&quot;; }
+li.checked::marker { content: &quot;\2612&quot;; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;P:&lt;/span&gt; số in&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Q:&lt;/span&gt; số in&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;G:&lt;/span&gt; số in&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;X:&lt;/span&gt; số in&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Y:&lt;/span&gt; số in&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="tdBtnHL">
+            <item>
+             <widget class="QPushButton" name="btnSinhKhoaTuDong">
+              <property name="minimumSize">
+               <size>
+                <width>120</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>Tạo khóa</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btnTaiKhoa">
+              <property name="minimumSize">
+               <size>
+                <width>120</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>Tải khóa</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btnXoaKhoaTuDong">
+              <property name="minimumSize">
+               <size>
+                <width>120</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>Xóa nhanh</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer>
+              <property name="orientation">
+               <enum>Qt::Orientation::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>0</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="pageTaoChuKy">
+         <layout class="QHBoxLayout" name="ckFileHL">
+          <property name="spacing">
+           <number>14</number>
+          </property>
+          <property name="leftMargin">
+           <number>18</number>
+          </property>
+          <property name="topMargin">
+           <number>14</number>
+          </property>
+          <property name="rightMargin">
+           <number>18</number>
+          </property>
+          <property name="bottomMargin">
+           <number>14</number>
+          </property>
+          <item>
+           <widget class="QFrame" name="cardCKLeft">
+            <layout class="QVBoxLayout" name="ckLeftVL">
+             <property name="spacing">
+              <number>8</number>
+             </property>
+             <property name="leftMargin">
+              <number>16</number>
+             </property>
+             <property name="topMargin">
+              <number>14</number>
+             </property>
+             <property name="rightMargin">
+              <number>16</number>
+             </property>
+             <property name="bottomMargin">
+              <number>14</number>
+             </property>
+             <item>
+              <widget class="QLabel" name="lbChonFileCK">
+               <property name="text">
+                <string>Chọn file cần ký</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="ckFileHL2">
+               <item>
+                <widget class="QLineEdit" name="inputDuongDanFileCanKy">
+                 <property name="placeholderText">
+                  <string>Nhập đường dẫn file</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="btnChonFileKy">
+                 <property name="text">
+                  <string>Chọn file</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <widget class="QLabel" name="lbThongTinFileCK">
+               <property name="text">
+                <string>Thông tin file</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QTextEdit" name="textHienThiFileKy">
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+               <property name="placeholderText">
+                <string>Hiển thị văn bản đã chọn ở file trên theo đúng định dạng</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QFrame" name="cardCKRight">
+            <layout class="QVBoxLayout" name="ckRightVL">
+             <property name="spacing">
+              <number>8</number>
+             </property>
+             <property name="leftMargin">
+              <number>16</number>
+             </property>
+             <property name="topMargin">
+              <number>14</number>
+             </property>
+             <property name="rightMargin">
+              <number>16</number>
+             </property>
+             <property name="bottomMargin">
+              <number>14</number>
+             </property>
+             <item>
+              <widget class="QLabel" name="lbKhoaBiMat">
+               <property name="text">
+                <string>Chọn khóa bí mật</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="ckKBMHL">
+               <item>
+                <widget class="QLineEdit" name="inputDuongDanKhoaBiMat">
+                 <property name="placeholderText">
+                  <string>Nhập đường dẫn file</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="btnChonFileKhoaBiMat">
+                 <property name="text">
+                  <string>Chọn file</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <widget class="QLabel" name="lbKhoaCongKhaiCK">
+               <property name="text">
+                <string>Chọn khóa công khai</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="ckKCKHL">
+               <item>
+                <widget class="QLineEdit" name="inputDuongDanKhoaCongKhai">
+                 <property name="placeholderText">
+                  <string>Nhập đường dẫn file</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="btnChonKhoaCongKhai">
+                 <property name="text">
+                  <string>Chọn file</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="ckActionHL">
+               <item>
+                <widget class="QPushButton" name="btnKyFlie">
+                 <property name="text">
+                  <string>Tạo chữ ký</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="btnTaiChuKy">
+                 <property name="text">
+                  <string>Tải chữ ký</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <spacer name="horizontalSpacer_4">
+                 <property name="orientation">
+                  <enum>Qt::Orientation::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>40</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <widget class="QLabel" name="cardTitle">
+               <property name="text">
+                <string>Trạng thái thao tác</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QTextEdit" name="textTrangThaiThaoTacKyFile">
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="pageXacThucChuKy">
+         <layout class="QHBoxLayout" name="xtFileHL">
+          <property name="spacing">
+           <number>14</number>
+          </property>
+          <property name="leftMargin">
+           <number>18</number>
+          </property>
+          <property name="topMargin">
+           <number>14</number>
+          </property>
+          <property name="rightMargin">
+           <number>18</number>
+          </property>
+          <property name="bottomMargin">
+           <number>14</number>
+          </property>
+          <item>
+           <widget class="QFrame" name="cardXTLeft">
+            <layout class="QVBoxLayout" name="xtLeftVL">
+             <property name="spacing">
+              <number>8</number>
+             </property>
+             <property name="leftMargin">
+              <number>16</number>
+             </property>
+             <property name="topMargin">
+              <number>14</number>
+             </property>
+             <property name="rightMargin">
+              <number>16</number>
+             </property>
+             <property name="bottomMargin">
+              <number>14</number>
+             </property>
+             <item>
+              <widget class="QLabel" name="lbChonFileGoc">
+               <property name="text">
+                <string>Chọn file gốc</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="xtFileGocHL">
+               <item>
+                <widget class="QLineEdit" name="inputDuongDanFileGoc">
+                 <property name="placeholderText">
+                  <string>Nhập đường dẫn file</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="btnChonFileGoc">
+                 <property name="text">
+                  <string>Chọn file</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <widget class="QLabel" name="lbThongTinFileXT">
+               <property name="text">
+                <string>Thông tin file</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QTextEdit" name="textHienThiFileGoc">
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+               <property name="placeholderText">
+                <string>Hiển thị văn bản đã chọn ở file trên theo đúng định dạng</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QFrame" name="cardXTRight">
+            <layout class="QVBoxLayout" name="xtRightVL">
+             <property name="spacing">
+              <number>8</number>
+             </property>
+             <property name="leftMargin">
+              <number>16</number>
+             </property>
+             <property name="topMargin">
+              <number>14</number>
+             </property>
+             <property name="rightMargin">
+              <number>16</number>
+             </property>
+             <property name="bottomMargin">
+              <number>14</number>
+             </property>
+             <item>
+              <widget class="QLabel" name="lbFileChuKy">
+               <property name="text">
+                <string>Chọn file chữ ký</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="xtCKHL">
+               <item>
+                <widget class="QLineEdit" name="inputDuongDanFileChuKy">
+                 <property name="placeholderText">
+                  <string>Nhập đường dẫn file</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="btnChonFileChuKy">
+                 <property name="text">
+                  <string>Chọn file</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <widget class="QLabel" name="lbKhoaCongKhaiXT">
+               <property name="text">
+                <string>Chọn khóa công khai</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="xtKCKHL">
+               <item>
+                <widget class="QLineEdit" name="inputDuongDanFileKhoaCongKhaiXacThuc">
+                 <property name="placeholderText">
+                  <string>Nhập đường dẫn file</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="btnChonFileKhoaCongKhaiXacThuc">
+                 <property name="text">
+                  <string>Chọn file</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="xtActionHL">
+               <item>
+                <widget class="QPushButton" name="btnXacThuc">
+                 <property name="text">
+                  <string>Xác thực</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <spacer name="horizontalSpacer_5">
+                 <property name="orientation">
+                  <enum>Qt::Orientation::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>40</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <widget class="QLabel" name="cardTitle">
+               <property name="text">
+                <string>Trạng thái thao tác</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QTextEdit" name="textTrangThaiThaoTacXacThuc">
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="pageNhatKy">
+         <layout class="QVBoxLayout" name="nkMainVL">
+          <property name="spacing">
+           <number>14</number>
+          </property>
+          <property name="leftMargin">
+           <number>18</number>
+          </property>
+          <property name="topMargin">
+           <number>14</number>
+          </property>
+          <property name="rightMargin">
+           <number>18</number>
+          </property>
+          <property name="bottomMargin">
+           <number>14</number>
+          </property>
+          <item>
+           <layout class="QHBoxLayout" name="nkSearchHL">
+            <item>
+             <widget class="QLineEdit" name="inputTimKiemNhatKy">
+              <property name="placeholderText">
+               <string>Tìm kiếm nhật ký hệ thống</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btnLocNhatKyHeThong">
+              <property name="minimumSize">
+               <size>
+                <width>80</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>Lọc</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QFrame" name="cardNK">
+            <layout class="QVBoxLayout" name="nkCardVL">
+             <property name="spacing">
+              <number>8</number>
+             </property>
+             <property name="leftMargin">
+              <number>20</number>
+             </property>
+             <property name="topMargin">
+              <number>14</number>
+             </property>
+             <property name="rightMargin">
+              <number>20</number>
+             </property>
+             <property name="bottomMargin">
+              <number>16</number>
+             </property>
+             <item>
+              <widget class="QLabel" name="lbThongTinChiTiet">
+               <property name="text">
+                <string>Thông tin chi tiết</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QTextEdit" name="textNhatKyHeThong">
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </widget>
+      </item>
+     </layout>
     </item>
    </layout>
   </widget>
