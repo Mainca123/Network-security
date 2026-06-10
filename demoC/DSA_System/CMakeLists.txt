@@ -11,7 +11,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # =========================================================
 # QT & Meta-compilers
 # =========================================================
-find_package(Qt6 REQUIRED COMPONENTS Widgets)
+find_package(Qt6 REQUIRED COMPONENTS Widgets Pdf)
 
 qt_standard_project_setup()
 
@@ -50,9 +50,12 @@ set(SOURCES
     src/crypto/dsa_manager.cpp
     src/crypto/hash_utils.cpp
     src/crypto/key_generator.cpp
+    src/crypto/dsa_handmade.cpp
+
 
     # File IO
     src/file_io/file_signer.cpp
+    src/file_io/file_renderer.cpp
 
     # Key Storage
     src/key_storage/key_manager.cpp
@@ -72,9 +75,11 @@ set(HEADERS
     src/crypto/dsa_manager.h
     src/crypto/hash_utils.h
     src/crypto/key_generator.h
+    src/crypto/dsa_handmade.h
 
     # File IO
     src/file_io/file_signer.h
+    src/file_io/file_renderer.h
 
     # Key Storage
     src/key_storage/key_manager.h
@@ -106,7 +111,11 @@ qt_add_resources(DSA_System "Styles"
 # =========================================================
 target_include_directories(DSA_System PRIVATE
     src
-    ${OPENSSL_INCLUDE_DIR}  # Sử dụng biến tự động thay vì viết cứng đường dẫn
+    src/crypto
+    src/file_io
+    src/key_storage
+    src/logging
+    ${OPENSSL_INCLUDE_DIR}
 )
 
 # =========================================================
@@ -114,6 +123,7 @@ target_include_directories(DSA_System PRIVATE
 # =========================================================
 target_link_libraries(DSA_System PRIVATE
     Qt6::Widgets
+    Qt6::Pdf
     OpenSSL::SSL
     OpenSSL::Crypto
 )

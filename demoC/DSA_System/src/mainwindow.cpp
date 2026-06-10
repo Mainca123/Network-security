@@ -17,6 +17,9 @@
 #include <QDebug>
 #include <openssl/bn.h>
 #include <QGraphicsDropShadowEffect>
+#include <QIntValidator>
+#include "dsa_handmade.h"
+#include <QImageReader>
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
@@ -72,6 +75,33 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
         frame->setGraphicsEffect(shadow);
     }
+
+    ui->inputP->setValidator(
+        new QIntValidator(
+            DSA_Handmade::MIN_P,
+            DSA_Handmade::MAX_VALUE,
+            this));
+
+    ui->inputQ->setValidator(
+        new QIntValidator(
+            DSA_Handmade::MIN_Q,
+            DSA_Handmade::MAX_VALUE,
+            this));
+
+    ui->inputG->setValidator(
+        new QIntValidator(
+            DSA_Handmade::MIN_G,
+            DSA_Handmade::MAX_VALUE,
+            this));
+
+    ui->inputX->setValidator(
+        new QIntValidator(
+            DSA_Handmade::MIN_X,
+            DSA_Handmade::MAX_VALUE,
+            this));
+    ui->inputY->setValidator(new QIntValidator(1, DSA_Handmade::MAX_VALUE, this));
+    ui->inputR->setValidator(new QIntValidator(1, DSA_Handmade::MAX_VALUE, this));
+    ui->inputS->setValidator(new QIntValidator(1, DSA_Handmade::MAX_VALUE, this));
 
     updateStatus("Sẵn sàng");
     setupConnections();
@@ -350,34 +380,154 @@ void MainWindow::onNavSystemLogsClicked()
 void MainWindow::onManualGenerateClicked()
 {
     QString error;
-    BIGNUM *p = nullptr, *q = nullptr, *g = nullptr, *x = nullptr;
 
-    if (!parseDecimalBigNumber(ui->inputP, &p, "P", error) ||
-        !parseDecimalBigNumber(ui->inputQ, &q, "Q", error) ||
-        !parseDecimalBigNumber(ui->inputG, &g, "G", error) ||
-        !parseDecimalBigNumber(ui->inputX, &x, "X", error))
+    long long p;
+    long long q;
+    long long g;
+    long long x;
+
+    // ===== P =====
+    if(!DSA_Handmade::parseValue(
+            ui->inputP->text(),
+            p,
+            error))
     {
-        QMessageBox::warning(this, "Lỗi tham số", error);
-        BN_free(p); BN_free(q); BN_free(g); BN_free(x);
+        QMessageBox::warning(
+            this,
+            "Lỗi tham số P",
+            error);
+
+        ui->inputP->setFocus();
         return;
     }
 
-    KeyGenerator generator;
-    BIGNUM *y = generator.generatePublicKey(g, x, p);
-    if (!y) {
-        QMessageBox::warning(this, "Lỗi", "Không thể tính toán khóa công khai Y.");
-        BN_free(p); BN_free(q); BN_free(g); BN_free(x);
+    // ===== Q =====
+    if(!DSA_Handmade::parseValue(
+            ui->inputQ->text(),
+            q,
+            error))
+    {
+        QMessageBox::warning(
+            this,
+            "Lỗi tham số Q",
+            error);
+
+        ui->inputQ->setFocus();
         return;
     }
 
-    ui->inputY->setText(bnToHex(y));
-    appendLog(ui->textTrangThaiThaoTacThuCong, "Đã tạo khóa thủ công thành công.");
+    // ===== G =====
+    if(!DSA_Handmade::parseValue(
+            ui->inputG->text(),
+            g,
+            error))
+    {
+        QMessageBox::warning(
+            this,
+            "Lỗi tham số G",
+            error);
 
-    Logger::log("Manual",
-                QString("P=%1 Q=%2 G=%3 X=%4 Y=%5")
-                    .arg(bnToHex(p), bnToHex(q), bnToHex(g), bnToHex(x), bnToHex(y)));
+        ui->inputG->setFocus();
+        return;
+    }
 
-    BN_free(p); BN_free(q); BN_free(g); BN_free(x); BN_free(y);
+    // ===== X =====
+    if(!DSA_Handmade::parseValue(
+            ui->inputX->text(),
+            x,
+            error))
+    {
+        QMessageBox::warning(
+            this,
+            "Lỗi tham số X",
+            error);
+
+        ui->inputX->setFocus();
+        return;
+    }
+
+    // ===== Kiểm tra P =====
+    if(!DSA_Handmade::validateP(
+            p,
+            error))
+    {
+        QMessageBox::warning(
+            this,
+            "P không hợp lệ",
+            error);
+
+        ui->inputP->setFocus();
+        return;
+    }
+
+    // ===== Kiểm tra Q =====
+    if(!DSA_Handmade::validateQ(
+            p,
+            q,
+            error))
+    {
+        QMessageBox::warning(
+            this,
+            "Q không hợp lệ",
+            error);
+
+        ui->inputQ->setFocus();
+        return;
+    }
+
+    // ===== Kiểm tra G =====
+    if(!DSA_Handmade::validateG(
+            p,
+            q,
+            g,
+            error))
+    {
+        QMessageBox::warning(
+            this,
+            "G không hợp lệ",
+            error);
+
+        ui->inputG->setFocus();
+        return;
+    }
+
+    // ===== Kiểm tra X =====
+    if(!DSA_Handmade::validateX(
+            q,
+            x,
+            error))
+    {
+        QMessageBox::warning(
+            this,
+            "X không hợp lệ",
+            error);
+
+        ui->inputX->setFocus();
+        return;
+    }
+
+    // ===== Sinh khóa công khai =====
+    long long y =
+        DSA_Handmade::generatePublicKey(
+            p,
+            g,
+            x);
+
+    ui->inputY->setText(
+        QString::number(y));
+
+    appendLog(
+        ui->textTrangThaiThaoTacThuCong,
+        "Đã tạo khóa thủ công thành công.");
+
+    Logger::log(
+        "Manual",
+        QString("P=%1 Q=%2 G=%3 X=%4 Y=%5")
+            .arg(p)
+            .arg(q)
+            .arg(g)
+            .arg(x)
+            .arg(y));
 }
 
 void MainWindow::onManualClearClicked()
@@ -392,61 +542,127 @@ void MainWindow::onManualClearClicked()
 // ─────────────────────────────────────────────────────────────────────────────
 // Trang Thủ công — Ký
 // ─────────────────────────────────────────────────────────────────────────────
-
 void MainWindow::onManualSignClicked()
 {
     QString error;
-    BIGNUM *p = nullptr, *q = nullptr, *g = nullptr, *x = nullptr;
 
-    if (!parseDecimalBigNumber(ui->inputP, &p, "P", error) ||
-        !parseDecimalBigNumber(ui->inputQ, &q, "Q", error) ||
-        !parseDecimalBigNumber(ui->inputG, &g, "G", error) ||
-        !parseDecimalBigNumber(ui->inputX, &x, "X", error))
+    long long p;
+    long long q;
+    long long g;
+    long long x;
+
+    if(!DSA_Handmade::parseValue(
+            ui->inputP->text(),
+            p,
+            error))
     {
-        QMessageBox::warning(this, "Lỗi tham số", error);
-        BN_free(p); BN_free(q); BN_free(g); BN_free(x);
+        QMessageBox::warning(
+            this,
+            "Lỗi P",
+            error);
         return;
     }
 
-    const QString message = ui->textTrangThaiThaoTacThuCong->toPlainText().trimmed();
-    if (message.isEmpty()) {
-        QMessageBox::warning(this, "Lỗi", "Vui lòng nhập nội dung cần ký.");
-        BN_free(p); BN_free(q); BN_free(g); BN_free(x);
+    if(!DSA_Handmade::parseValue(
+            ui->inputQ->text(),
+            q,
+            error))
+    {
+        QMessageBox::warning(
+            this,
+            "Lỗi Q",
+            error);
         return;
     }
 
-    // Ghi văn bản ra file tạm để DSAManager xử lý
-    QString tempPath;
-    if (!writeTextToTempFile(message, tempPath)) {
-        QMessageBox::warning(this, "Lỗi", "Không thể tạo tệp tạm thời để ký.");
-        BN_free(p); BN_free(q); BN_free(g); BN_free(x);
+    if(!DSA_Handmade::parseValue(
+            ui->inputG->text(),
+            g,
+            error))
+    {
+        QMessageBox::warning(
+            this,
+            "Lỗi G",
+            error);
         return;
     }
 
-    BIGNUM *r = BN_new();
-    BIGNUM *s = BN_new();
-    DSAManager dsa;
-    const bool signedOk = dsa.signFileCalculated(tempPath, p, q, g, x, r, s);
-
-    // Dọn file tạm
-    QFile::remove(tempPath);
-
-    if (!signedOk) {
-        QMessageBox::warning(this, "Lỗi", "Ký thủ công thất bại.");
-        BN_free(r); BN_free(s);
-        BN_free(p); BN_free(q); BN_free(g); BN_free(x);
+    if(!DSA_Handmade::parseValue(
+            ui->inputX->text(),
+            x,
+            error))
+    {
+        QMessageBox::warning(
+            this,
+            "Lỗi X",
+            error);
         return;
     }
 
-    const QString rText = bnToHex(r);
-    const QString sText = bnToHex(s);
-    appendLog(ui->textTrangThaiThaoTacThuCong,
-              QString("Đã ký thành công. r=%1 s=%2").arg(rText, sText));
-    ;
-    Logger::log("Manual.Sign", QString("r=%1 s=%2").arg(rText, sText));
+    if(!DSA_Handmade::validateAll(
+            p,q,g,x,error))
+    {
+        QMessageBox::warning(
+            this,
+            "DSA không hợp lệ",
+            error);
+        return;
+    }
 
-    BN_free(r); BN_free(s);
-    BN_free(p); BN_free(q); BN_free(g); BN_free(x);
+    QString message =
+        ui->inputVanBanKy
+            ->toPlainText()
+            .trimmed();
+
+    if(message.isEmpty())
+    {
+        QMessageBox::warning(
+            this,
+            "Lỗi",
+            "Vui lòng nhập nội dung cần ký.");
+        return;
+    }
+
+    long long r;
+    long long s;
+
+    bool ok =
+        DSA_Handmade::generateSignature(
+            message,
+            p,
+            q,
+            g,
+            x,
+            r,
+            s);
+
+    if(!ok)
+    {
+        QMessageBox::warning(
+            this,
+            "Lỗi",
+            "Không thể tạo chữ ký.");
+        return;
+    }
+
+    ui->inputR->setText(QString::number(r));
+    ui->inputS->setText(QString::number(s));
+    appendLog(
+        ui->textTrangThaiThaoTacThuCong,
+        QString(
+            "\n----- CHỮ KÝ DSA -----\n"
+            "r = %1\n"
+            "s = %2")
+            .arg(r)
+            .arg(s));
+
+    Logger::log(
+        "Manual.Sign",
+        QString(
+            "Message=%1 | r=%2 | s=%3")
+            .arg(message)
+            .arg(r)
+            .arg(s));
 }
 
 void MainWindow::onManualSignClearClicked()
@@ -463,75 +679,144 @@ void MainWindow::onManualSignClearClicked()
 void MainWindow::onManualVerifyClicked()
 {
     QString error;
-    BIGNUM *p = nullptr, *q = nullptr, *g = nullptr;
-    BIGNUM *y = nullptr, *r = nullptr, *s = nullptr;
 
-    if (!parseDecimalBigNumber(ui->inputP, &p, "P", error) ||
-        !parseDecimalBigNumber(ui->inputQ, &q, "Q", error) ||
-        !parseDecimalBigNumber(ui->inputG, &g, "G", error))
+    long long p;
+    long long q;
+    long long g;
+    long long y;
+    long long r;
+    long long s;
+
+    if(!DSA_Handmade::parseValue(
+            ui->inputP->text(),
+            p,
+            error))
     {
-        QMessageBox::warning(this, "Lỗi tham số", error);
-        BN_free(p); BN_free(q); BN_free(g);
+        QMessageBox::warning(
+            this,
+            "Lỗi P",
+            error);
         return;
     }
 
-    // Y được lưu dạng hex sau khi tạo khóa
-    const QString yText = ui->inputY->text().trimmed();
-    if (yText.isEmpty()) {
-        QMessageBox::warning(this, "Lỗi",
-                             "Vui lòng nhập hoặc tạo khóa công khai Y trước.");
-        BN_free(p); BN_free(q); BN_free(g);
-        return;
-    }
-    if (!BN_hex2bn(&y, yText.toStdString().c_str()) || !y) {
-        QMessageBox::warning(this, "Lỗi", "Giá trị Y không hợp lệ (cần hex).");
-        BN_free(p); BN_free(q); BN_free(g);
-        return;
-    }
-
-    if (!parseDecimalBigNumber(ui->inputU, &r, "U", error) ||
-        !parseDecimalBigNumber(ui->inputV, &s, "V", error))
+    if(!DSA_Handmade::parseValue(
+            ui->inputQ->text(),
+            q,
+            error))
     {
-        QMessageBox::warning(this, "Lỗi tham số", error);
-        BN_free(p); BN_free(q); BN_free(g); BN_free(y);
-        BN_free(r); BN_free(s);
+        QMessageBox::warning(
+            this,
+            "Lỗi Q",
+            error);
         return;
     }
 
-    const QString message = ui->inputVanBanXacThuc->toPlainText().trimmed();
-    if (message.isEmpty()) {
-        QMessageBox::warning(this, "Lỗi", "Vui lòng nhập văn bản cần xác thực.");
-        BN_free(p); BN_free(q); BN_free(g); BN_free(y);
-        BN_free(r); BN_free(s);
+    if(!DSA_Handmade::parseValue(
+            ui->inputG->text(),
+            g,
+            error))
+    {
+        QMessageBox::warning(
+            this,
+            "Lỗi G",
+            error);
         return;
     }
 
-    QString tempPath;
-    if (!writeTextToTempFile(message, tempPath)) {
-        QMessageBox::warning(this, "Lỗi",
-                             "Không thể tạo tệp tạm thời để xác thực.");
-        BN_free(p); BN_free(q); BN_free(g); BN_free(y);
-        BN_free(r); BN_free(s);
+    if(!DSA_Handmade::parseValue(
+            ui->inputY->text(),
+            y,
+            error))
+    {
+        QMessageBox::warning(
+            this,
+            "Lỗi Y",
+            error);
         return;
     }
 
-    DSAManager dsa;
-    const bool verified = dsa.verifyFileCalculated(tempPath, p, q, g, y, r, s);
-    QFile::remove(tempPath);
+    if(!DSA_Handmade::parseValue(
+            ui->inputR->text(),
+            r,
+            error))
+    {
+        QMessageBox::warning(
+            this,
+            "Lỗi R",
+            error);
+        return;
+    }
 
-    const QString resultText = verified ? "Xác thực thành công." : "Xác thực thất bại.";
-    appendLog(ui->textTrangThaiThaoTacThuCong, resultText);
-    ;
-    Logger::log("Manual.Verify", resultText);
+    if(!DSA_Handmade::parseValue(
+            ui->inputS->text(),
+            s,
+            error))
+    {
+        QMessageBox::warning(
+            this,
+            "Lỗi S",
+            error);
+        return;
+    }
 
-    BN_free(p); BN_free(q); BN_free(g); BN_free(y);
-    BN_free(r); BN_free(s);
+    QString message =
+        ui->inputVanBanXacThuc
+            ->toPlainText()
+            .trimmed();
+
+    if(message.isEmpty())
+    {
+        QMessageBox::warning(
+            this,
+            "Lỗi",
+            "Vui lòng nhập văn bản cần xác thực.");
+        return;
+    }
+
+    bool verified =
+        DSA_Handmade::verifySignature(
+            message,
+            p,
+            q,
+            g,
+            y,
+            r,
+            s);
+
+    QString resultText;
+
+    if(verified)
+    {
+        resultText = "Chữ ký hợp lệ";
+
+        QMessageBox::information(
+            this,
+            "Xác thực thành công",
+            resultText);
+    }
+    else
+    {
+        resultText = "Chữ ký không hợp lệ";
+
+        QMessageBox::warning(
+            this,
+            "Xác thực thất bại",
+            resultText);
+    }
+
+    appendLog(
+        ui->textTrangThaiThaoTacThuCong,
+        resultText);
+
+    Logger::log(
+        "Manual.Verify",
+        resultText);
 }
 
 void MainWindow::onManualVerifyClearClicked()
 {
-    ui->inputU->clear();
-    ui->inputV->clear();
+    ui->inputR->clear();
+    ui->inputS->clear();
     ui->inputVanBanXacThuc->clear();
     appendLog(ui->textTrangThaiThaoTacThuCong, "Đã xóa dữ liệu xác thực.");
 }
@@ -614,21 +899,75 @@ void MainWindow::onAutoDownloadClicked()
 // Trang Tạo chữ ký (file)
 // ─────────────────────────────────────────────────────────────────────────────
 
+#include "file_io/file_renderer.h"
+
 void MainWindow::onCreateChooseFileClicked()
 {
-    const QString path = QFileDialog::getOpenFileName(this, "Chọn file cần ký");
-    if (path.isEmpty())
-        return;
+    const QString path = QFileDialog::getOpenFileName(
+        this, "Chọn file cần ký", "",
+        "Tất cả file được hỗ trợ "
+        "(*.png *.jpg *.jpeg *.bmp *.pdf *.txt *.log *.csv *.json *.xml "
+        "*.docx *.doc *.odt);;"
+        "Images (*.png *.jpg *.jpeg *.bmp);;"
+        "PDF (*.pdf);;"
+        "Word (*.docx *.doc *.odt);;"
+        "Text (*.txt *.log *.csv *.json *.xml)");
+    if (path.isEmpty()) return;
 
     currentCreateFilePath = path;
     ui->inputDuongDanFileCanKy->setText(path);
+    QApplication::processEvents();
 
-    QFile file(path);
-    if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        ui->textHienThiFileKy->setPlainText(
-            QString::fromUtf8(file.readAll()));
-        file.close();
+    int vpW = ui->hienThiFileCanKy->viewport()->width();
+    int vpH = ui->hienThiFileCanKy->viewport()->height();
+
+    // *** Render với kích thước THỰC của frame, không phải viewport ***
+    const int PAGE_SPACING = 3;
+    const int PAGE_PADDING = 3;
+    const int FRAME_X      = 15;
+    const int FRAME_W      = vpW - 40;   // phải khớp với setGeometry bên dưới
+    const int FRAME_H      = vpH - 10;
+
+    // Truyền kích thước frame thực vào renderer
+    QList<QPixmap> pages = FileRenderer::render(path, FRAME_W, FRAME_H);
+    if (pages.isEmpty()) {
+        QMessageBox::warning(this, "Lỗi", "Không thể đọc file này.");
+        return;
     }
+
+    QWidget* container = new QWidget;
+    int totalH = (FRAME_H + PAGE_SPACING) * pages.size() + PAGE_SPACING;
+    container->setFixedSize(vpW, totalH);
+
+    for (int i = 0; i < pages.size(); ++i) {
+        QFrame* pageFrame = new QFrame(container);
+        int yPos = PAGE_SPACING + i * (FRAME_H + PAGE_SPACING);
+
+        // Kích thước frame
+        pageFrame->setGeometry(FRAME_X, yPos, FRAME_W, FRAME_H);
+        pageFrame->setStyleSheet(
+            "background: white;"
+            "border: 1px solid #DADADA;"
+            "border-radius: 6px;");
+
+        // imageLabel vừa khít frame, trừ padding
+        int labelW = FRAME_W - PAGE_PADDING * 2;
+        int labelH = FRAME_H - PAGE_PADDING * 2;
+
+        QLabel* imageLabel = new QLabel(pageFrame);
+        imageLabel->setGeometry(PAGE_PADDING, PAGE_PADDING, labelW, labelH);
+        imageLabel->setAlignment(Qt::AlignCenter);
+        imageLabel->setStyleSheet("border: none; background: transparent;");
+
+        // Scale pixmap vừa label — giờ labelW/labelH đã đúng
+        imageLabel->setPixmap(
+            pages[i].scaled(
+                labelW, labelH,
+                Qt::KeepAspectRatio,
+                Qt::SmoothTransformation));
+    }
+
+    ui->hienThiFileCanKy->setWidget(container);
 }
 
 void MainWindow::onCreateChoosePrivateKeyClicked()
@@ -722,19 +1061,64 @@ void MainWindow::onCreateDownloadClicked()
 
 void MainWindow::onVerifyChooseOriginalClicked()
 {
-    const QString path = QFileDialog::getOpenFileName(this, "Chọn file gốc");
-    if (path.isEmpty())
-        return;
+    const QString path = QFileDialog::getOpenFileName(
+        this, "Chọn file cần ký", "",
+        "Tất cả file được hỗ trợ "
+        "(*.png *.jpg *.jpeg *.bmp *.pdf *.txt *.log *.csv *.json *.xml "
+        "*.docx *.doc *.odt);;"
+        "Images (*.png *.jpg *.jpeg *.bmp);;"
+        "PDF (*.pdf);;"
+        "Word (*.docx *.doc *.odt);;"
+        "Text (*.txt *.log *.csv *.json *.xml)");
+    if (path.isEmpty()) return;
 
     currentVerifyOriginalFilePath = path;
     ui->inputDuongDanFileGoc->setText(path);
 
-    QFile file(path);
-    if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        ui->textHienThiFileGoc->setPlainText(
-            QString::fromUtf8(file.readAll()));
-        file.close();
+    QApplication::processEvents();
+    int vpW = ui->hienThiVanBanGoc->viewport()->width();
+    int vpH = ui->hienThiVanBanGoc->viewport()->height();
+
+
+    QList<QPixmap> pages = FileRenderer::render(path, vpW, vpH);
+    if (pages.isEmpty()) {
+        QMessageBox::warning(this, "Lỗi", "Không thể đọc file này.");
+        return;
     }
+
+
+    const int PAGE_SPACING = 3;
+    const int PAGE_PADDING = 3;
+
+    QWidget* container = new QWidget;
+    int totalH = (vpH + PAGE_SPACING) * pages.size() + PAGE_SPACING;
+    container->setFixedSize(vpW, totalH);
+
+    for (int i = 0; i < pages.size(); ++i) {
+        QFrame* pageFrame = new QFrame(container);
+        int yPos = PAGE_SPACING + i * (vpH + PAGE_SPACING);
+        pageFrame->setGeometry(15, yPos, vpW-40, vpH-10);
+        pageFrame->setStyleSheet(
+            "background: white;"
+            "border: 1px solid #DADADA;"
+            "border-radius: 6px;");
+
+        QLabel* imageLabel = new QLabel(pageFrame);
+        imageLabel->setGeometry(
+            PAGE_PADDING, PAGE_PADDING,
+            vpW - PAGE_PADDING * 2,
+            vpH - PAGE_PADDING * 2);
+        imageLabel->setAlignment(Qt::AlignCenter);
+        imageLabel->setStyleSheet("border: none; background: transparent;");
+        imageLabel->setPixmap(
+            pages[i].scaled(
+                imageLabel->width(),
+                imageLabel->height(),
+                Qt::KeepAspectRatio,
+                Qt::SmoothTransformation));
+    }
+
+    ui->hienThiVanBanGoc->setWidget(container);
 }
 
 void MainWindow::onVerifyChooseSignatureClicked()
@@ -763,12 +1147,30 @@ void MainWindow::onVerifyChoosePublicKeyClicked()
 
 void MainWindow::onVerifySignClicked()
 {
-    if (currentVerifyOriginalFilePath.isEmpty() ||
-        currentVerifySignaturePath.isEmpty()    ||
-        currentVerifyPublicKeyPath.isEmpty())
+    if (currentVerifyOriginalFilePath.isEmpty())
     {
-        QMessageBox::warning(this, "Lỗi",
-            "Vui lòng chọn đủ: file gốc, file chữ ký và khóa công khai.");
+        QMessageBox::warning(
+            this,
+            "Thiếu file",
+            "Vui lòng chọn file gốc cần xác thực.");
+        return;
+    }
+
+    if (currentVerifySignaturePath.isEmpty())
+    {
+        QMessageBox::warning(
+            this,
+            "Thiếu chữ ký",
+            "Vui lòng chọn file chữ ký (.sig).");
+        return;
+    }
+
+    if (currentVerifyPublicKeyPath.isEmpty())
+    {
+        QMessageBox::warning(
+            this,
+            "Thiếu khóa công khai",
+            "Vui lòng chọn khóa công khai.");
         return;
     }
 
@@ -778,8 +1180,8 @@ void MainWindow::onVerifySignClicked()
         currentVerifySignaturePath);
 
     const QString message = verified
-        ? "Xác thực chữ ký thành công."
-        : "Xác thực chữ ký thất bại.";
+                                ? "Xác thực chữ ký thành công."
+                                : "Xác thực chữ ký thất bại.";
 
     appendLog(ui->textTrangThaiThaoTacXacThuc, message);
     lastVerifyResultMessage = message;

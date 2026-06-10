@@ -494,6 +494,9 @@ Phiên bản: v2.0</string>
                </item>
                <item>
                 <widget class="QTextEdit" name="inputVanBanKy">
+                 <property name="enabled">
+                  <bool>true</bool>
+                 </property>
                  <property name="placeholderText">
                   <string>Nhập số tự nhiên lớn hơn 0</string>
                  </property>
@@ -577,26 +580,26 @@ Phiên bản: v2.0</string>
                <item>
                 <widget class="QLabel" name="lbU">
                  <property name="text">
-                  <string>Nhập U</string>
+                  <string>Nhập R</string>
                  </property>
                 </widget>
                </item>
                <item>
-                <widget class="QLineEdit" name="inputU">
+                <widget class="QLineEdit" name="inputR">
                  <property name="placeholderText">
                   <string>Nhập số tự nhiên lớn hơn 0</string>
                  </property>
                 </widget>
                </item>
                <item>
-                <widget class="QLabel" name="lbV">
+                <widget class="QLabel" name="labelS">
                  <property name="text">
-                  <string>Nhập V</string>
+                  <string>Nhập S</string>
                  </property>
                 </widget>
                </item>
                <item>
-                <widget class="QLineEdit" name="inputV">
+                <widget class="QLineEdit" name="inputS">
                  <property name="placeholderText">
                   <string>Nhập số tự nhiên lớn hơn 0</string>
                  </property>
@@ -917,13 +920,34 @@ li.checked::marker { content: &quot;\2612&quot;; }
               </widget>
              </item>
              <item>
-              <widget class="QTextEdit" name="textHienThiFileKy">
-               <property name="readOnly">
+              <widget class="QScrollArea" name="hienThiFileCanKy">
+               <property name="horizontalScrollBarPolicy">
+                <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOff</enum>
+               </property>
+               <property name="widgetResizable">
                 <bool>true</bool>
                </property>
-               <property name="placeholderText">
-                <string>Hiển thị văn bản đã chọn ở file trên theo đúng định dạng</string>
-               </property>
+               <widget class="QWidget" name="scrollAreaWidgetContents">
+                <property name="geometry">
+                 <rect>
+                  <x>0</x>
+                  <y>0</y>
+                  <width>536</width>
+                  <height>592</height>
+                 </rect>
+                </property>
+                <widget class="QWidget" name="verticalLayoutWidget">
+                 <property name="geometry">
+                  <rect>
+                   <x>0</x>
+                   <y>0</y>
+                   <width>531</width>
+                   <height>591</height>
+                  </rect>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout"/>
+                </widget>
+               </widget>
               </widget>
              </item>
             </layout>
@@ -1115,13 +1139,31 @@ li.checked::marker { content: &quot;\2612&quot;; }
               </widget>
              </item>
              <item>
-              <widget class="QTextEdit" name="textHienThiFileGoc">
-               <property name="readOnly">
+              <widget class="QScrollArea" name="hienThiVanBanGoc">
+               <property name="widgetResizable">
                 <bool>true</bool>
                </property>
-               <property name="placeholderText">
-                <string>Hiển thị văn bản đã chọn ở file trên theo đúng định dạng</string>
-               </property>
+               <widget class="QWidget" name="scrollAreaWidgetContents_2">
+                <property name="geometry">
+                 <rect>
+                  <x>0</x>
+                  <y>0</y>
+                  <width>536</width>
+                  <height>592</height>
+                 </rect>
+                </property>
+                <widget class="QWidget" name="verticalLayoutWidget_2">
+                 <property name="geometry">
+                  <rect>
+                   <x>-1</x>
+                   <y>-1</y>
+                   <width>541</width>
+                   <height>601</height>
+                  </rect>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_2"/>
+                </widget>
+               </widget>
               </widget>
              </item>
             </layout>

@@ -17,7 +17,6 @@ public:
         const QString& publicKeyPath,
         const QString& signaturePath
         );
-
 };
 
 #endif

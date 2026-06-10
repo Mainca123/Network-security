@@ -540,3 +540,14 @@ QComboBox QAbstractItemView {
     selection-background-color: #DDEEF8;
     selection-color: #1A2B4A;
 }
+
+QScrollArea {
+    background-color: #F5F7FA;
+    border: 1px solid #D9E2EC;
+    border-radius: 12px;
+}
+
+QScrollArea > QWidget > QWidget {
+    background-color: #F5F7FA;
+    border-radius: 12px;
+}

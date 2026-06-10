@@ -45,7 +45,6 @@ BIGNUM* KeyGenerator::generatePublicKey(
         )
 {
     BIGNUM* y = BN_new();
-
     BN_CTX* ctx = BN_CTX_new();
 
     // y = g^x mod p
