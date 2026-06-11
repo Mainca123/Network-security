@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane fitToWidth="true" fitToHeight="true" hbarPolicy="AS_NEEDED" vbarPolicy="AS_NEEDED" styleClass="page-scroll"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controller.ManualParameterController">
+    <content>
+<VBox fx:id="root" spacing="26" styleClass="page-fill responsive-page">
+        <padding>
+            <Insets top="24" right="28" bottom="28" left="28"/>
+        </padding>
+
+        <HBox alignment="CENTER_LEFT" spacing="14">
+        <VBox spacing="6" HBox.hgrow="ALWAYS">
+            <HBox alignment="CENTER_LEFT" spacing="12">
+                <Label text="Tạo tham số DSA" styleClass="page-heading"/>
+                <Label text="NHẬP THỦ CÔNG" styleClass="tiny-badge"/>
+            </HBox>
+            <Label text="Nhập p, q và khóa bí mật x; hệ thống tự sinh g và khóa công khai y theo công thức DSA."
+                   wrapText="true" styleClass="muted-label"/>
+        </VBox>
+        <Button onAction="#handleShowGuide" styleClass="secondary-button" text="Hướng dẫn"/>
+    </HBox>
+
+    <HBox spacing="32" VBox.vgrow="ALWAYS">
+        <VBox spacing="18" styleClass="key-result-card" HBox.hgrow="ALWAYS">
+            <HBox alignment="CENTER_LEFT" spacing="12">
+                <Label text="Bộ tham số DSA" styleClass="panel-title"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Label text="Nhập p, q, x" styleClass="muted-label"/>
+            </HBox>
+
+            <GridPane hgap="22" vgap="16" VBox.vgrow="ALWAYS">
+                <columnConstraints>
+                    <ColumnConstraints hgrow="ALWAYS"/>
+                    <ColumnConstraints hgrow="ALWAYS"/>
+                </columnConstraints>
+
+                <VBox spacing="8" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                    <Label text="Số nguyên tố p" styleClass="field-label"/>
+                    <TextArea fx:id="pField" prefRowCount="5" promptText="Nhập số nguyên tố p"
+                              wrapText="true" styleClass="key-output-area"/>
+                </VBox>
+                <VBox spacing="8" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                    <Label text="Số nguyên tố q" styleClass="field-label"/>
+                    <TextArea fx:id="qField" prefRowCount="5" promptText="Nhập q, q chia hết p - 1"
+                              wrapText="true" styleClass="key-output-area"/>
+                </VBox>
+                <VBox spacing="8" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="1">
+                    <Label text="Phần tử sinh g tự sinh" styleClass="field-label"/>
+                    <TextArea fx:id="gField" prefRowCount="4" promptText="Tự sinh theo g = h^((p - 1) / q) mod p"
+                              editable="false" focusTraversable="false"
+                              wrapText="true" styleClass="key-output-area"/>
+                </VBox>
+                <VBox spacing="8" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                    <Label text="Khóa bí mật x" styleClass="field-label"/>
+                    <TextArea fx:id="xField" prefRowCount="4" promptText="Nhập khóa bí mật x"
+                              wrapText="true" styleClass="key-output-area secret-output-area"/>
+                </VBox>
+                <VBox spacing="8" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                    <Label text="Khóa công khai y tự sinh" styleClass="field-label"/>
+                    <TextArea fx:id="yField" prefRowCount="4" promptText="Tự tính theo y = g^x mod p"
+                              editable="false" focusTraversable="false"
+                              wrapText="true" styleClass="key-output-area public-output-area"/>
+                </VBox>
+            </GridPane>
+        </VBox>
+
+        <VBox spacing="18" styleClass="key-config-card" prefWidth="330" maxWidth="380">
+            <HBox alignment="CENTER_LEFT" spacing="12">
+                <Label text="Kiểm tra tham số" styleClass="panel-title"/>
+            </HBox>
+
+            <VBox spacing="10" styleClass="key-info-box">
+                <Label text="Quy tắc kiểm tra" styleClass="section-title"/>
+                <Label text="Hệ thống kiểm tra p, q là số nguyên tố, q chia hết p - 1, x hợp lệ rồi tự sinh g và y."
+                       wrapText="true" styleClass="muted-label"/>
+            </VBox>
+
+            <Button maxWidth="Infinity" onAction="#handleValidate" styleClass="success-button" text="Kiểm tra tham số"/>
+            <Button maxWidth="Infinity" onAction="#handleSave" styleClass="primary-button" text="Lưu tham số"/>
+            <Button maxWidth="Infinity" onAction="#handleClear" styleClass="danger-button" text="Làm mới"/>
+
+            <VBox spacing="8" styleClass="status-card" VBox.vgrow="ALWAYS">
+                <Label text="Trạng thái thao tác" styleClass="section-title"/>
+                <Label fx:id="statusMessage" text="Sẵn sàng nhập tham số" wrapText="true" styleClass="success-text"/>
+            </VBox>
+        </VBox>
+        </HBox>
+    </VBox>
+    </content>
+</ScrollPane>

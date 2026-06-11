@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.web.WebView?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane fitToWidth="true" fitToHeight="true" hbarPolicy="AS_NEEDED" vbarPolicy="AS_NEEDED" styleClass="page-scroll"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controller.SignController">
+    <content>
+<VBox fx:id="root" spacing="18" styleClass="page-fill responsive-page">
+        <padding>
+            <Insets top="24" right="32" bottom="28" left="32"/>
+        </padding>
+
+        <HBox alignment="CENTER_LEFT" spacing="14">
+            <VBox spacing="6" HBox.hgrow="ALWAYS">
+                <Label text="Ký dữ liệu điện tử" styleClass="page-heading"/>
+                <Label text="Ký văn bản hoặc tệp bằng khóa bí mật DSA. Chữ ký luôn dựa trên dữ liệu gốc."
+                       wrapText="true" styleClass="muted-label"/>
+            </VBox>
+            <Button onAction="#handleShowGuide" styleClass="secondary-button" text="Hướng dẫn"/>
+        </HBox>
+
+    <TabPane tabClosingPolicy="UNAVAILABLE" styleClass="workspace-tabs" VBox.vgrow="ALWAYS">
+        <tabs>
+            <Tab text="Ký văn bản">
+                <content>
+                    <SplitPane dividerPositions="0.70" styleClass="workspace-split">
+                        <items>
+                            <VBox spacing="12" styleClass="viewer-card">
+                                <HBox alignment="CENTER_LEFT" spacing="10">
+                                    <Label text="Trình soạn văn bản" styleClass="viewer-title"/>
+                                    <Label text="VĂN BẢN" styleClass="tiny-badge"/>
+                                    <Region HBox.hgrow="ALWAYS"/>
+                                    <Label text="Nội dung gốc" styleClass="muted-label"/>
+                                </HBox>
+                                <TabPane tabClosingPolicy="UNAVAILABLE" styleClass="document-tabs" VBox.vgrow="ALWAYS">
+                                    <tabs>
+                                        <Tab text="Nội dung">
+                                            <content>
+                                                <TextArea fx:id="textInput" promptText="Nhập văn bản cần ký" wrapText="true"
+                                                          styleClass="document-editor"/>
+                                            </content>
+                                        </Tab>
+                                        <Tab text="Chữ ký">
+                                            <content>
+                                                <VBox spacing="10" styleClass="signature-grid">
+                                                    <GridPane hgap="12" vgap="12">
+                                                    <Label text="r" styleClass="field-label" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                                                    <TextField fx:id="textRField" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                                                    <Label text="s" styleClass="field-label" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                                                    <TextField fx:id="textSField" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                                                    </GridPane>
+                                                    <Label text="Mã băm" styleClass="field-label"/>
+                                                    <TextArea fx:id="textHashArea" editable="false" prefRowCount="5" wrapText="true" styleClass="hash-viewer"/>
+                                                </VBox>
+                                            </content>
+                                        </Tab>
+                                    </tabs>
+                                </TabPane>
+                            </VBox>
+
+                            <VBox spacing="14" styleClass="action-panel">
+                                <Label text="Khu vực thao tác" styleClass="panel-title"/>
+                                <VBox spacing="8" styleClass="control-card">
+                                    <Label text="Khóa bí mật" styleClass="field-label"/>
+                                    <Button maxWidth="Infinity" onAction="#handleChooseTextPrivateKey" styleClass="secondary-button" text="Chọn khóa bí mật"/>
+                                    <Label fx:id="textKeyLabel" text="Chưa chọn khóa bí mật" styleClass="muted-label" wrapText="true"/>
+                                </VBox>
+                                <VBox spacing="8" styleClass="control-card">
+                                    <Label text="Thuật toán băm" styleClass="field-label"/>
+                                    <ComboBox fx:id="textHashCombo" maxWidth="Infinity"/>
+                                </VBox>
+                                <VBox spacing="10" styleClass="control-card">
+                                    <Button maxWidth="Infinity" onAction="#handleSignText" styleClass="success-button" text="Ký dữ liệu"/>
+                                    <Button maxWidth="Infinity" onAction="#handleSaveTextSignature" styleClass="primary-button" text="Lưu chữ ký"/>
+                                    <Button maxWidth="Infinity" onAction="#handleClearText" styleClass="danger-button" text="Làm mới"/>
+                                </VBox>
+                                <VBox spacing="8" styleClass="status-card">
+                                    <Label text="Trạng thái thao tác" styleClass="section-title"/>
+                                    <Label fx:id="textStatusMessage" text="Sẵn sàng" wrapText="true" styleClass="success-text"/>
+                                </VBox>
+                            </VBox>
+                        </items>
+                    </SplitPane>
+                </content>
+            </Tab>
+
+            <Tab text="Ký tệp">
+                <content>
+                    <HBox spacing="20">
+                        <VBox spacing="16" HBox.hgrow="ALWAYS">
+                            <VBox spacing="12" styleClass="upload-zone">
+                                <Label text="Tệp cần ký" styleClass="tiny-badge"/>
+                                <Label text="Chọn tài liệu để ký số" styleClass="upload-zone-title"/>
+                                <Label text="Hỗ trợ PDF, DOCX, TXT, XLSX, JSON và ảnh" styleClass="upload-zone-subtitle"/>
+                                <Button onAction="#handleChooseFile" styleClass="secondary-button" text="Chọn tệp từ máy tính"/>
+                            </VBox>
+
+                            <HBox alignment="CENTER_LEFT" spacing="18" styleClass="file-summary-card">
+                                <VBox alignment="CENTER" spacing="6" styleClass="file-icon-tile">
+                                    <Label text="TỆP" styleClass="file-icon-label"/>
+                                </VBox>
+                                <VBox spacing="9" HBox.hgrow="ALWAYS">
+                                    <Label text="Tệp đã chọn" styleClass="field-label"/>
+                                    <Label fx:id="fileLabel" text="Chưa chọn tệp" styleClass="muted-label" wrapText="true"/>
+                                    <HBox spacing="12">
+                                        <VBox spacing="2" styleClass="info-chip" HBox.hgrow="ALWAYS">
+                                            <Label text="KÍCH THƯỚC" styleClass="info-chip-title"/>
+                                            <Label text="Xem trong Thông tin tệp" styleClass="info-chip-value"/>
+                                        </VBox>
+                                        <VBox spacing="2" styleClass="info-chip" HBox.hgrow="ALWAYS">
+                                            <Label text="MÃ BĂM SHA-256" styleClass="info-chip-title"/>
+                                            <Label text="Xem trong thẻ Mã băm" styleClass="info-chip-value"/>
+                                        </VBox>
+                                    </HBox>
+                                </VBox>
+                            </HBox>
+
+                            <VBox spacing="12" styleClass="viewer-card preview-card" VBox.vgrow="ALWAYS">
+                                <HBox alignment="CENTER_LEFT" spacing="10">
+                                    <Label text="Xem trước tài liệu" styleClass="viewer-title"/>
+                                    <Region HBox.hgrow="ALWAYS"/>
+                                    <Button onAction="#handleFileZoomOut" styleClass="secondary-button" text="Thu nhỏ"/>
+                                    <Button onAction="#handleFileZoomIn" styleClass="secondary-button" text="Phóng to"/>
+                                    <Button onAction="#handleFileFitWidth" styleClass="secondary-button" text="Vừa chiều rộng"/>
+                                </HBox>
+                                <TabPane tabClosingPolicy="UNAVAILABLE" styleClass="document-tabs preview-tabs" VBox.vgrow="ALWAYS">
+                                    <tabs>
+                                        <Tab text="Xem định dạng">
+                                            <content>
+                                                <StackPane styleClass="preview-stack">
+                                                    <ScrollPane fx:id="fileFormattedScroll" fitToWidth="true" hbarPolicy="AS_NEEDED" vbarPolicy="AS_NEEDED">
+                                                        <content>
+                                                            <VBox fx:id="fileFormattedPages" alignment="TOP_CENTER" spacing="16" styleClass="formatted-pages"/>
+                                                        </content>
+                                                    </ScrollPane>
+                                                    <WebView fx:id="fileDocxWebView" managed="false" visible="false"/>
+                                                    <TabPane fx:id="fileWorkbookTabs" managed="false" tabClosingPolicy="UNAVAILABLE" visible="false"/>
+                                                </StackPane>
+                                            </content>
+                                        </Tab>
+                                        <Tab text="Văn bản thuần">
+                                            <content>
+                                                <TextArea fx:id="filePlainTextArea" editable="false" wrapText="false"
+                                                          styleClass="document-viewer"/>
+                                            </content>
+                                        </Tab>
+                                        <Tab text="Thông tin tệp">
+                                            <content>
+                                                <TextArea fx:id="fileInfoArea" editable="false" wrapText="true"
+                                                          styleClass="metadata-viewer"/>
+                                            </content>
+                                        </Tab>
+                                        <Tab text="Mã băm">
+                                            <content>
+                                                <TextArea fx:id="fileHashArea" editable="false" wrapText="true"
+                                                          styleClass="hash-viewer"/>
+                                            </content>
+                                        </Tab>
+                                    </tabs>
+                                </TabPane>
+                            </VBox>
+                        </VBox>
+
+                        <VBox spacing="14" styleClass="action-panel">
+                            <Label text="Xử lý ký tệp" styleClass="panel-title"/>
+                            <VBox spacing="8" styleClass="status-card">
+                                <Label text="Trạng thái khóa" styleClass="section-title"/>
+                                <Label fx:id="fileKeyLabel" text="Chưa chọn khóa bí mật" styleClass="muted-label" wrapText="true"/>
+                                <Button maxWidth="Infinity" onAction="#handleChooseFilePrivateKey" styleClass="secondary-button" text="Chọn khóa bí mật"/>
+                            </VBox>
+                            <VBox spacing="8" styleClass="control-card">
+                                <Label text="Thuật toán băm" styleClass="field-label"/>
+                                <ComboBox fx:id="fileHashCombo" maxWidth="Infinity"/>
+                            </VBox>
+                            <Button maxWidth="Infinity" onAction="#handleSignFile" styleClass="success-button" text="Ký tệp"/>
+                            <Button maxWidth="Infinity" onAction="#handleSaveFileSignature" styleClass="primary-button" text="Lưu chữ ký"/>
+                            <Button maxWidth="Infinity" onAction="#handleClearFile" styleClass="danger-button" text="Làm mới"/>
+                            <VBox spacing="8" styleClass="control-card">
+                                <Label text="Chữ ký r" styleClass="field-label"/>
+                                <TextField fx:id="fileRField" editable="false"/>
+                                <Label text="Chữ ký s" styleClass="field-label"/>
+                                <TextField fx:id="fileSField" editable="false"/>
+                            </VBox>
+                            <VBox spacing="8" styleClass="status-card">
+                                <Label text="Trạng thái thao tác" styleClass="section-title"/>
+                                <Label fx:id="fileStatusMessage" text="Sẵn sàng" wrapText="true" styleClass="success-text"/>
+                            </VBox>
+                            <Label text="Lưu ý: chữ ký luôn được tạo từ byte gốc của tệp, không ký nội dung xem trước." wrapText="true" styleClass="muted-label"/>
+                        </VBox>
+                    </HBox>
+                </content>
+            </Tab>
+        </tabs>
+    </TabPane>
+    </VBox>
+    </content>
+</ScrollPane>
