@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane fitToWidth="true" fitToHeight="true" hbarPolicy="AS_NEEDED" vbarPolicy="AS_NEEDED" styleClass="page-scroll"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controller.AutoKeyController">
+    <content>
+<VBox fx:id="root" spacing="26" styleClass="page-fill responsive-page">
+        <padding>
+            <Insets top="24" right="28" bottom="28" left="28"/>
+        </padding>
+
+        <HBox alignment="CENTER_LEFT" spacing="14">
+        <VBox spacing="6" HBox.hgrow="ALWAYS">
+            <HBox alignment="CENTER_LEFT" spacing="12">
+                <Label text="Tạo cặp khóa mới" styleClass="page-heading"/>
+                <Label text="MÔI TRƯỜNG BẢO MẬT" styleClass="tiny-badge"/>
+            </HBox>
+            <Label text="Cấu hình tham số bảo mật và tạo cặp khóa công khai/bí mật cho hệ thống."
+                   wrapText="true" styleClass="muted-label"/>
+        </VBox>
+        <Button onAction="#handleShowGuide" styleClass="secondary-button" text="Hướng dẫn"/>
+    </HBox>
+
+    <HBox spacing="32" VBox.vgrow="ALWAYS">
+        <VBox spacing="24" prefWidth="330" maxWidth="380">
+            <VBox spacing="22" styleClass="key-config-card">
+                <HBox alignment="CENTER_LEFT" spacing="12">
+                    <Label text="Cấu hình khóa" styleClass="panel-title"/>
+                </HBox>
+
+                <VBox spacing="10">
+                    <Label text="Mức độ bảo mật (L, N bit)" styleClass="field-label"/>
+                    <GridPane hgap="14" vgap="12">
+                        <columnConstraints>
+                            <ColumnConstraints hgrow="ALWAYS"/>
+                            <ColumnConstraints hgrow="ALWAYS"/>
+                        </columnConstraints>
+                        <ToggleButton fx:id="security1024Button" maxWidth="Infinity" styleClass="security-tile"
+                                      text="1024 / 160&#10;Cơ bản" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                        <ToggleButton fx:id="security2048N224Button" maxWidth="Infinity" styleClass="security-tile"
+                                      text="2048 / 224&#10;Nâng cao" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                        <ToggleButton fx:id="security2048N256Button" maxWidth="Infinity" styleClass="security-tile"
+                                      text="2048 / 256&#10;Khuyến nghị" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                        <ToggleButton fx:id="security3072Button" maxWidth="Infinity" styleClass="security-tile"
+                                      text="3072 / 256&#10;Mạnh" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                    </GridPane>
+                </VBox>
+
+                <VBox spacing="10">
+                    <Label text="Thuật toán băm" styleClass="field-label"/>
+                    <ComboBox fx:id="hashCombo" maxWidth="Infinity"/>
+                </VBox>
+
+                <VBox spacing="12">
+                    <Button fx:id="generateParameterButton" maxWidth="Infinity" onAction="#handleGenerateParameters"
+                            styleClass="secondary-button" text="Tạo tham số"/>
+                    <Button fx:id="generateKeyButton" maxWidth="Infinity" onAction="#handleGenerateKey"
+                            styleClass="success-button" text="Tạo khóa"/>
+                    <ProgressIndicator fx:id="loadingIndicator" managed="false" visible="false"
+                                       prefWidth="42" prefHeight="42"/>
+                </VBox>
+            </VBox>
+
+            <VBox spacing="10" styleClass="key-info-box">
+                <Label text="Thông tin" styleClass="section-title"/>
+                <Label text="Mức bảo mật càng cao thì thời gian tạo tham số và khóa có thể lâu hơn tùy hiệu năng máy."
+                       wrapText="true" styleClass="muted-label"/>
+            </VBox>
+        </VBox>
+
+        <VBox spacing="18" styleClass="key-result-card" HBox.hgrow="ALWAYS">
+            <HBox alignment="CENTER_LEFT" spacing="12">
+                <Label text="Kết quả tạo khóa" styleClass="panel-title"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button onAction="#handleTogglePrivateKey" styleClass="secondary-button" text="Hiện/Ẩn khóa bí mật"/>
+                <Button onAction="#handleClear" styleClass="danger-button" text="Làm mới"/>
+            </HBox>
+
+            <GridPane hgap="22" vgap="16" VBox.vgrow="ALWAYS">
+                <columnConstraints>
+                    <ColumnConstraints hgrow="ALWAYS"/>
+                    <ColumnConstraints hgrow="ALWAYS"/>
+                </columnConstraints>
+
+                <VBox spacing="8" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                    <Label text="Số nguyên P" styleClass="field-label"/>
+                    <TextArea fx:id="pOutput" editable="false" prefRowCount="3" wrapText="true" styleClass="key-output-area"/>
+                </VBox>
+                <VBox spacing="8" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                    <Label text="Số nguyên Q" styleClass="field-label"/>
+                    <TextArea fx:id="qOutput" editable="false" prefRowCount="3" wrapText="true" styleClass="key-output-area"/>
+                </VBox>
+                <VBox spacing="8" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="1">
+                    <Label text="Số nguyên G" styleClass="field-label"/>
+                    <TextArea fx:id="gOutput" editable="false" prefRowCount="3" wrapText="true" styleClass="key-output-area"/>
+                </VBox>
+                <VBox spacing="8" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="2">
+                    <Label text="Khóa bí mật x" styleClass="field-label"/>
+                    <TextArea fx:id="xOutput" editable="false" prefRowCount="3" wrapText="true" styleClass="key-output-area secret-output-area"/>
+                </VBox>
+                <VBox spacing="8" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="3">
+                    <Label text="Khóa công khai y" styleClass="field-label"/>
+                    <TextArea fx:id="yOutput" editable="false" prefRowCount="3" wrapText="true" styleClass="key-output-area public-output-area"/>
+                </VBox>
+            </GridPane>
+
+            <HBox spacing="12">
+                <Button maxWidth="Infinity" onAction="#handleSavePrivateKey" styleClass="secondary-button"
+                        text="Lưu khóa bí mật" HBox.hgrow="ALWAYS"/>
+                <Button maxWidth="Infinity" onAction="#handleSavePublicKey" styleClass="secondary-button"
+                        text="Lưu khóa công khai" HBox.hgrow="ALWAYS"/>
+                <Button maxWidth="Infinity" onAction="#handleSaveFullKeyPair" styleClass="primary-button"
+                        text="Lưu cặp khóa" HBox.hgrow="ALWAYS"/>
+            </HBox>
+
+            <VBox spacing="8" styleClass="status-card">
+                <Label text="Trạng thái thao tác" styleClass="section-title"/>
+                <Label fx:id="statusMessage" text="Sẵn sàng" wrapText="true" styleClass="success-text"/>
+            </VBox>
+        </VBox>
+        </HBox>
+    </VBox>
+    </content>
+</ScrollPane>

@@ -165,7 +165,9 @@ QFrame#cardCKRight,
 QFrame#cardCKLeft,
 QFrame#cardXTRight,
 QFrame#cardXTLeft,
-QFrame#cardNK
+QFrame#cardNK,
+QFrame#frameTaoKhoaTuDong,
+QFrame#frameTaoKhoaThuCong
 {
     background-color: #FFFFFF;
     border-radius: 16px;
@@ -340,8 +342,9 @@ QPushButton#btnXacThuc:pressed
 /* Nút xóa / nguy hiểm (đỏ nhạt) */
 QPushButton#btnXoaChuKyThuCong,
 QPushButton#btnXoaXacThucThuCong,
-QPushButton#btnXoaKoaThuCong,
-QPushButton#btnXoaKhoaTuDong
+QPushButton#btnXoaKhoaThuCong,
+QPushButton#btnXoaKhoaTuDong,
+QPushButton#btnXoaKhoaThuCong:pressed
 {
     background-color: qlineargradient(
         x1:0, y1:0, x2:0, y2:1,
@@ -361,8 +364,9 @@ QPushButton#btnXoaKhoaTuDong
 /* Hover */
 QPushButton#btnXoaChuKyThuCong:hover,
 QPushButton#btnXoaXacThucThuCong:hover,
-QPushButton#btnXoaKoaThuCong:hover,
-QPushButton#btnXoaKhoaTuDong:hover
+QPushButton#btnXoaKhoaThuCong:hover,
+QPushButton#btnXoaKhoaTuDong:hover,
+QPushButton#btnXoaKhoaThuCong:pressed
 {
     background-color: qlineargradient(
         x1:0, y1:0, x2:0, y2:1,
@@ -375,8 +379,9 @@ QPushButton#btnXoaKhoaTuDong:hover
 /* Pressed */
 QPushButton#btnXoaChuKyThuCong:pressed,
 QPushButton#btnXoaXacThucThuCong:pressed,
-QPushButton#btnXoaKoaThuCong:pressed,
-QPushButton#btnXoaKhoaTuDong:pressed
+QPushButton#btnXoaKhoaThuCong:pressed,
+QPushButton#btnXoaKhoaTuDong:pressed,
+QPushButton#btnXoaKhoaThuCong:pressed
 {
     background-color: qlineargradient(
         x1:0, y1:0, x2:0, y2:1,
@@ -391,6 +396,7 @@ QPushButton#btnXoaKhoaTuDong:pressed
 /* Nút phụ (xám xanh) */
 QPushButton#btnTaiKhoa,
 QPushButton#btnTaiChuKy,
+QPushButton#btnTaiKhoa1,
 QPushButton#btnLocNhatKyHeThong
 {
     background-color: qlineargradient(
@@ -411,6 +417,7 @@ QPushButton#btnLocNhatKyHeThong
 /* Hover */
 QPushButton#btnTaiKhoa:hover,
 QPushButton#btnTaiChuKy:hover,
+QPushButton#btnTaiKhoa1,
 QPushButton#btnLocNhatKyHeThong:hover
 {
     background-color: qlineargradient(
@@ -424,6 +431,7 @@ QPushButton#btnLocNhatKyHeThong:hover
 /* Pressed */
 QPushButton#btnTaiKhoa:pressed,
 QPushButton#btnTaiChuKy:pressed,
+QPushButton#btnTaiKhoa1:pressed,
 QPushButton#btnLocNhatKyHeThong:pressed
 {
     background-color: qlineargradient(
@@ -550,4 +558,19 @@ QScrollArea {
 QScrollArea > QWidget > QWidget {
     background-color: #F5F7FA;
     border-radius: 12px;
+}
+
+QLabel#cardTitle,
+QLabel#cardTitle1
+{
+    color: black;
+    font-weight: normal;
+}
+
+QLabel#labelKhoaThuCong,
+QLabel#labelKhoaTuDong
+{
+    color: blue;
+    font-weight: bold;
+    font-size: 18px;
 }

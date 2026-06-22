@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+
+<TabPane tabClosingPolicy="UNAVAILABLE" styleClass="workspace-tabs"
+         maxWidth="Infinity" maxHeight="Infinity"
+         xmlns:fx="http://javafx.com/fxml">
+    <tabs>
+        <Tab text="Tạo khóa tự động">
+            <content>
+                <fx:include source="auto-key.fxml"/>
+            </content>
+        </Tab>
+        <Tab text="Tạo khóa thủ công">
+            <content>
+                <fx:include source="manual-parameter.fxml"/>
+            </content>
+        </Tab>
+    </tabs>
+</TabPane>

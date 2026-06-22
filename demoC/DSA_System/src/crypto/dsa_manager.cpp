@@ -134,7 +134,7 @@ bool DSAManager::signFileCalculated(const QString &filePath,
     // -----------------------------------------------------------------
     // Bước 2: Thực hiện thuật toán ký toán học DSA
     // -----------------------------------------------------------------
-    BN_CTX *ctx = BN_CTX_new(); // Ngữ cảnh tính toán của OpenSSL
+    BN_CTX *ctx = BN_CTX_new();
     BIGNUM *k = BN_new();
     BIGNUM *k_inv = BN_new();
     BIGNUM *tmp = BN_new();

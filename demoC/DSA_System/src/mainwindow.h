@@ -10,6 +10,18 @@ namespace Ui { class MainWindow; }
 class QLineEdit;
 class QTextEdit;
 
+struct SignatureRecord
+{
+    int id;
+
+    QString fileName;
+
+    QString fileHash;
+
+    QString publicKeyHash;
+
+    QString signature;
+};
 /**
  * @brief MainWindow — cửa sổ chính của hệ thống DSA v2.0
  *
@@ -118,6 +130,15 @@ private:
                                BIGNUM   **outBn,
                                const QString &paramName,
                                QString  &errorMessage);
+    bool saveSignatureRegistry(
+        const QString& filePath,
+        const QString& signaturePath,
+        const QString& publicKeyPath);
+
+    int findSignatureRecord(
+        const QString& fileHash,
+        const QString& signatureContent,
+        SignatureRecord& record);
 
 private slots:
     // ── Điều hướng sidebar ────────────────────────────────────────────
@@ -130,14 +151,6 @@ private slots:
     // ── Trang Thủ công — Tạo khóa ────────────────────────────────────
     void onManualGenerateClicked();      ///< Tính Y = g^x mod p từ P,Q,G,X nhập tay
     void onManualClearClicked();         ///< Xóa toàn bộ input thủ công
-
-    // ── Trang Thủ công — Ký ──────────────────────────────────────────
-    void onManualSignClicked();          ///< Ký văn bản với P,Q,G,X nhập tay
-    void onManualSignClearClicked();     ///< Xóa nội dung ký
-
-    // ── Trang Thủ công — Xác thực ────────────────────────────────────
-    void onManualVerifyClicked();        ///< Xác thực chữ ký với U,V,Y nhập tay
-    void onManualVerifyClearClicked();   ///< Xóa nội dung xác thực
 
     // ── Trang Tạo khóa tự động ───────────────────────────────────────
     void onAutoGenerateClicked();        ///< Sinh P,Q,G,X,Y tự động (DSAManager 1024-bit)

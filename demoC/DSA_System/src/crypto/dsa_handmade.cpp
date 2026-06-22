@@ -373,17 +373,8 @@ bool DSA_Handmade::generateSignature(
 
         if(s == 0)
             continue;
-
-        qDebug() << "hash =" << hash;
-        qDebug() << "k =" << k;
-        qDebug() << "r =" << r;
-        qDebug() << "kInv =" << kInv;
-        qDebug() << "s =" << s;
         return true;
     }
-
-    qDebug() << "s =" << s;
-    qDebug() << "r =" << r;
     return false;
 }
 
@@ -425,21 +416,6 @@ bool DSA_Handmade::verifySignature(
 
     long long v =
         ((gu1 * yu2) % p) % q;
-
-    qDebug() << "MESSAGE =" << message;
-    qDebug() << "HASH =" << hash;
-
-    qDebug() << "R =" << r;
-    qDebug() << "S =" << s;
-
-    qDebug() << "W =" << w;
-    qDebug() << "U1 =" << u1;
-    qDebug() << "U2 =" << u2;
-
-    qDebug() << "GU1 =" << gu1;
-    qDebug() << "YU2 =" << yu2;
-
-    qDebug() << "V =" << v;
 
     return v == r;
 }

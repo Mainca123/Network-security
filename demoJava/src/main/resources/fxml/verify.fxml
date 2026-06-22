@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.web.WebView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane fitToWidth="true" fitToHeight="true" hbarPolicy="AS_NEEDED" vbarPolicy="AS_NEEDED" styleClass="page-scroll"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controller.VerifyController">
+    <content>
+        <VBox fx:id="root" spacing="8" styleClass="page-fill responsive-page" style="-fx-background-color: #f8fafc;">
+            <padding>
+                <Insets top="10" right="24" bottom="10" left="24"/>
+            </padding>
+
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Label text="X&#225;c th&#7921;c ch&#7919; k&#253;" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #0f172a;"/>
+                <Label text="|" style="-fx-text-fill: #cbd5e1; -fx-font-size: 14px;"/>
+                <Label text="Ki&#7875;m tra ch&#7919; k&#253; DSA, so s&#225;nh m&#227; b&#259;m v&#224; ph&#225;t hi&#7879;n d&#7919; li&#7879;u b&#7883; ch&#7881;nh s&#7917;a." wrapText="true" style="-fx-font-size: 11px; -fx-text-fill: #64748b;"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button onAction="#handleShowGuide" text="H&#432;&#7899;ng d&#7851;n" style="-fx-background-color: #eff6ff; -fx-text-fill: #2563eb; -fx-padding: 4 10; -fx-font-weight: bold; -fx-font-size: 11px; -fx-border-color: #bfdbfe; -fx-border-radius: 4; -fx-background-radius: 4;"/>
+            </HBox>
+
+            <TabPane tabClosingPolicy="UNAVAILABLE" styleClass="workspace-tabs" VBox.vgrow="ALWAYS" style="-fx-background-color: transparent;">
+                <tabs>
+                    <Tab text="X&#225;c th&#7921;c v&#259;n b&#7843;n">
+                        <content>
+                            <SplitPane dividerPositions="0.70" styleClass="workspace-split" style="-fx-background-color: transparent; -fx-padding: 15 0 0 0;">
+                                <items>
+                                    <VBox spacing="12" styleClass="viewer-card" style="-fx-background-color: white; -fx-border-color: #e2e8f0; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 15;">
+                                        <HBox alignment="CENTER_LEFT" spacing="10">
+                                            <Label text="V&#259;n b&#7843;n g&#7889;c" style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-text-fill: #1e293b;"/>
+                                            <Label text="X&#193;C TH&#7920;C" style="-fx-background-color: #e0f2fe; -fx-text-fill: #0284c7; -fx-padding: 2 6; -fx-font-size: 10px; -fx-background-radius: 4;"/>
+                                            <Region HBox.hgrow="ALWAYS"/>
+                                            <Label text="N&#7897;i dung c&#7847;n ki&#7875;m tra" style="-fx-text-fill: #64748b; -fx-font-size: 12px;"/>
+                                        </HBox>
+                                        <TextArea fx:id="textInput" promptText="Nh&#7853;p v&#259;n b&#7843;n g&#7889;c" wrapText="true" style="-fx-background-color: #f8fafc; -fx-border-color: #e2e8f0;" VBox.vgrow="ALWAYS"/>
+                                    </VBox>
+
+                                    <ScrollPane fitToWidth="true" hbarPolicy="NEVER" style="-fx-background-color: transparent; -fx-background: transparent;">
+                                        <content>
+                                            <VBox spacing="15" styleClass="action-panel" style="-fx-background-color: white; -fx-border-color: #e2e8f0; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 15;">
+                                                <Label text="Khu v&#7921;c thao t&#225;c" style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-text-fill: #1e293b;"/>
+                                                
+                                                <VBox spacing="8">
+                                                    <Label text="Ch&#7919; k&#253;" style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #475569;"/>
+                                                    <Button maxWidth="Infinity" onAction="#handleChooseTextSignature" text="Ch&#7885;n ch&#7919; k&#253;" style="-fx-background-color: white; -fx-border-color: #cbd5e1; -fx-padding: 6;"/>
+                                                    <Label fx:id="textSignatureLabel" text="Ch&#432;a ch&#7885;n ch&#7919; k&#253;" style="-fx-font-size: 11px; -fx-text-fill: #64748b;" wrapText="true"/>
+                                                </VBox>
+                                                
+                                                <VBox spacing="8">
+                                                    <Label text="Kh&#243;a c&#244;ng khai" style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #475569;"/>
+                                                    <Button maxWidth="Infinity" onAction="#handleChooseTextPublicKey" text="Ch&#7885;n kh&#243;a c&#244;ng khai" style="-fx-background-color: white; -fx-border-color: #cbd5e1; -fx-padding: 6;"/>
+                                                    <Label fx:id="textPublicKeyLabel" text="Ch&#432;a ch&#7885;n kh&#243;a c&#244;ng khai" style="-fx-font-size: 11px; -fx-text-fill: #64748b;" wrapText="true"/>
+                                                </VBox>
+                                                
+                                                <VBox spacing="10">
+                                                    <Button maxWidth="Infinity" onAction="#handleVerifyText" text="X&#225;c th&#7921;c" style="-fx-background-color: #2563eb; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8; -fx-background-radius: 4;"/>
+                                                    <Button maxWidth="Infinity" onAction="#handleClearText" text="L&#224;m m&#7899;i" style="-fx-background-color: #fee2e2; -fx-text-fill: #dc2626; -fx-font-weight: bold; -fx-padding: 8; -fx-background-radius: 4;"/>
+                                                </VBox>
+                                                
+                                                <VBox spacing="8" style="-fx-background-color: #f8fafc; -fx-padding: 10; -fx-border-radius: 4; -fx-border-color: #e2e8f0; -fx-border-width: 1;">
+                                                    <Label text="Tr&#7841;ng th&#225;i thao t&#225;c" style="-fx-font-size: 11px; -fx-font-weight: bold;"/>
+                                                    <Label fx:id="textStatusMessage" text="S&#7861;n s&#224;ng x&#225;c th&#7921;c v&#259;n b&#7843;n" wrapText="true" styleClass="success-text" maxWidth="Infinity"/>
+                                                </VBox>
+                                            </VBox>
+                                        </content>
+                                    </ScrollPane>
+                                </items>
+                            </SplitPane>
+                        </content>
+                    </Tab>
+
+                    <Tab text="X&#225;c th&#7921;c t&#7879;p">
+                        <content>
+                            <SplitPane dividerPositions="0.70" styleClass="workspace-split" style="-fx-background-color: transparent; -fx-padding: 15 0 0 0;">
+                                <items>
+                                    <VBox spacing="10">
+                                        
+                                        <!-- EXTREMELY COMPACT TOP SECTION -->
+                                        <HBox alignment="CENTER_LEFT" spacing="8" style="-fx-background-color: white; -fx-padding: 6 12; -fx-border-color: #e2e8f0; -fx-border-radius: 8; -fx-background-radius: 8;">
+                                            <Label text="T&#192;I LI&#7878;U &amp; KH&#211;A" style="-fx-font-weight: bold; -fx-font-size: 10px; -fx-text-fill: #2563eb; -fx-background-color: #eff6ff; -fx-padding: 4 8; -fx-border-radius: 4; -fx-background-radius: 4;"/>
+                                            
+                                            <HBox alignment="CENTER_LEFT" spacing="6" HBox.hgrow="ALWAYS">
+                                                <Button onAction="#handleChooseOriginalFile" text="T&#7879;p" style="-fx-background-color: white; -fx-border-color: #cbd5e1; -fx-border-radius: 4; -fx-padding: 2 6; -fx-font-size: 10px; -fx-font-weight: bold; -fx-text-fill: #475569;"/>
+                                                <Label fx:id="originalFileLabel" text="Ch&#432;a ch&#7885;n" style="-fx-font-size: 10px; -fx-text-fill: #64748b;" maxWidth="60" textOverrun="ELLIPSIS"/>
+                                                
+                                                <Region style="-fx-min-width: 1; -fx-background-color: #e2e8f0; -fx-min-height: 12; -fx-max-height: 12;"/>
+                                                
+                                                <Button onAction="#handleChooseFileSignature" text="Ch&#7919; k&#253;" style="-fx-background-color: white; -fx-border-color: #cbd5e1; -fx-border-radius: 4; -fx-padding: 2 6; -fx-font-size: 10px; -fx-font-weight: bold; -fx-text-fill: #475569;"/>
+                                                <Label fx:id="fileSignatureLabel" text="Ch&#432;a ch&#7885;n" style="-fx-font-size: 10px; -fx-text-fill: #64748b;" maxWidth="60" textOverrun="ELLIPSIS"/>
+                                                
+                                                <Region style="-fx-min-width: 1; -fx-background-color: #e2e8f0; -fx-min-height: 12; -fx-max-height: 12;"/>
+                                                
+                                                <Button onAction="#handleChooseFilePublicKey" text="Kh&#243;a" style="-fx-background-color: white; -fx-border-color: #cbd5e1; -fx-border-radius: 4; -fx-padding: 2 6; -fx-font-size: 10px; -fx-font-weight: bold; -fx-text-fill: #475569;"/>
+                                                <Label fx:id="filePublicKeyLabel" text="Ch&#432;a ch&#7885;n" style="-fx-font-size: 10px; -fx-text-fill: #64748b;" maxWidth="60" textOverrun="ELLIPSIS"/>
+                                            </HBox>
+                                            
+                                            <Button onAction="#handleVerifyFile" text="X&#225;c th&#7921;c" style="-fx-background-color: #2563eb; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 4 10; -fx-background-radius: 4; -fx-font-size: 11px;"/>
+                                            <Button onAction="#handleClearFile" text="L&#224;m m&#7899;i" style="-fx-background-color: #fee2e2; -fx-text-fill: #dc2626; -fx-font-weight: bold; -fx-padding: 4 10; -fx-background-radius: 4; -fx-font-size: 11px;"/>
+                                        </HBox>
+
+                                        <!-- Preview Area -->
+                                        <VBox spacing="0" styleClass="viewer-card" VBox.vgrow="ALWAYS" style="-fx-background-color: white; -fx-border-color: #e2e8f0; -fx-border-radius: 8; -fx-background-radius: 8;">
+                                            <StackPane VBox.vgrow="ALWAYS">
+                                                <TabPane tabClosingPolicy="UNAVAILABLE" styleClass="document-tabs">
+                                                <tabs>
+                                                    <Tab text="Xem &#273;&#7883;nh d&#7841;ng">
+                                                        <content>
+                                                            <StackPane style="-fx-background-color: #f8fafc;">
+                                                                <ScrollPane fx:id="fileFormattedScroll" fitToWidth="true" hbarPolicy="AS_NEEDED" vbarPolicy="AS_NEEDED" style="-fx-background: #f8fafc; -fx-background-color: transparent;">
+                                                                    <content>
+                                                                        <VBox fx:id="fileFormattedPages" alignment="TOP_CENTER" spacing="16" styleClass="formatted-pages" style="-fx-padding: 15;"/>
+                                                                    </content>
+                                                                </ScrollPane>
+                                                                <WebView fx:id="fileDocxWebView" managed="false" visible="false"/>
+                                                                <TabPane fx:id="fileWorkbookTabs" managed="false" tabClosingPolicy="UNAVAILABLE" visible="false"/>
+                                                            </StackPane>
+                                                        </content>
+                                                    </Tab>
+                                                    <Tab text="V&#259;n b&#7843;n thu&#7847;n">
+                                                        <content>
+                                                            <TextArea fx:id="filePlainTextArea" editable="false" wrapText="false" style="-fx-background-color: white; -fx-border-width: 0;"/>
+                                                        </content>
+                                                    </Tab>
+                                                    <Tab text="Th&#244;ng tin t&#7879;p">
+                                                        <content>
+                                                            <TextArea fx:id="fileInfoArea" editable="false" wrapText="true" style="-fx-background-color: white; -fx-border-width: 0;"/>
+                                                        </content>
+                                                    </Tab>
+                                                    <Tab text="M&#227; b&#259;m">
+                                                        <content>
+                                                            <TextArea fx:id="fileHashArea" editable="false" wrapText="true" style="-fx-background-color: white; -fx-border-width: 0;"/>
+                                                        </content>
+                                                    </Tab>
+                                                </tabs>
+                                            </TabPane>
+                                            <!-- Floating zoom buttons over the tab header -->
+                                            <HBox alignment="TOP_RIGHT" spacing="5" pickOnBounds="false" style="-fx-padding: 4 10 0 0;">
+                                                <Button text="-" onAction="#handleFileZoomOut" style="-fx-background-color: white; -fx-border-color: #cbd5e1; -fx-border-radius: 4; -fx-text-fill: #2563eb; -fx-padding: 2 8; -fx-font-size: 11px; -fx-font-weight: bold;"/>
+                                                <Button text="+" onAction="#handleFileZoomIn" style="-fx-background-color: white; -fx-border-color: #cbd5e1; -fx-border-radius: 4; -fx-text-fill: #2563eb; -fx-padding: 2 8; -fx-font-size: 11px; -fx-font-weight: bold;"/>
+                                                <Button text="V&#7915;a khung" onAction="#handleFileFitWidth" style="-fx-background-color: white; -fx-border-color: #cbd5e1; -fx-border-radius: 4; -fx-text-fill: #2563eb; -fx-padding: 2 8; -fx-font-size: 11px; -fx-font-weight: bold;"/>
+                                            </HBox>
+                                            </StackPane>
+                                        </VBox>
+                                    </VBox>
+
+                                    <!-- Right: Action Panel -->
+                                    <ScrollPane fitToWidth="true" hbarPolicy="NEVER" style="-fx-background-color: transparent; -fx-background: transparent; -fx-min-width: 280; -fx-max-width: 280;">
+                                        <content>
+                                            <VBox spacing="18" styleClass="result-panel" style="-fx-padding: 15; -fx-background-color: white; -fx-border-color: #e2e8f0; -fx-border-radius: 8; -fx-background-radius: 8;">
+                                                <Label text="K&#7870;T QU&#7842; KI&#7874;M TRA" style="-fx-font-weight: bold; -fx-font-size: 13px; -fx-text-fill: #475569;"/>
+                                                <Region prefHeight="1" style="-fx-background-color: #e4e6f2;"/>
+                                                <Label text="..." style="-fx-font-size: 24px; -fx-text-fill: #94a3b8; -fx-alignment: center;" maxWidth="Infinity"/>
+                                                <Label fx:id="fileStatusMessage" text="S&#7861;n s&#224;ng x&#225;c th&#7921;c t&#7879;p" wrapText="true" styleClass="success-text" maxWidth="Infinity"/>
+                                                <Label text="K&#7871;t qu&#7842; x&#225;c th&#7921;c s&#7869; hi&#7875;n th&#7883; &#7903; &#273;&#226;y." wrapText="true" style="-fx-font-size: 10px; -fx-text-fill: #94a3b8; -fx-text-alignment: center;" maxWidth="Infinity"/>
+                                            </VBox>
+                                        </content>
+                                    </ScrollPane>
+                                </items>
+                            </SplitPane>
+                        </content>
+                    </Tab>
+                </tabs>
+            </TabPane>
+        </VBox>
+    </content>
+</ScrollPane>
